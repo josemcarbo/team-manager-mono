@@ -12,7 +12,7 @@ import Navbar from './components/navbar/navbar'
 import Modal from './components/modal/modal'
 import ProjectComponent from './components/project/project'
 
-export default function Home (): React.ReactElement {
+export default function HomePage (): React.ReactElement {
   console.log('Home')
   const [userQueryEnabled, setUserQueryEnabled] = useState(false)
   const router = useRouter()

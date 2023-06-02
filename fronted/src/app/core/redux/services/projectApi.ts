@@ -1,7 +1,7 @@
 import { BASE_API_URL } from '@/app/core/constants'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export interface Project {
+export interface IProject {
   id: string
   name: string
   description?: string
@@ -24,7 +24,6 @@ const token = sessionStorage?.getItem('token') as string
 
 export const projectApi = createApi({
   reducerPath: 'projectApi',
-  refetchOnFocus: true,
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_API_URL}/projects`,
     prepareHeaders: (headers) => {
@@ -33,13 +32,13 @@ export const projectApi = createApi({
     }
   }),
   endpoints: (builder) => ({
-    createProject: builder.mutation<CreateProject, Project>({
+    createProject: builder.mutation<CreateProject, IProject>({
       query: (body) => ({ url: '', method: 'POST', body })
     }),
-    findOneProject: builder.query<Project, string>({
+    findOneProject: builder.query<IProject, string>({
       query: (id) => ({ url: `/${id}`, method: 'GET' })
     }),
-    findAllProject: builder.query<Project[], FindAllProject | undefined>({
+    findAllProject: builder.query<IProject[], FindAllProject | undefined>({
       query: (params) => ({ url: '', method: 'GET', params })
     })
   })

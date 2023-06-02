@@ -24,7 +24,6 @@ const token = sessionStorage?.getItem('token') as string
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  refetchOnFocus: true,
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_API_URL}/users`,
     prepareHeaders: (headers) => {

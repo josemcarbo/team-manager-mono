@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
 import {
   useCreateProjectMutation,
-  type Project,
+  type IProject,
   useFindAllProjectQuery
 } from '@/app/core/redux/services/projectApi'
 import { refresh } from '@/app/core/redux/features/projectSlice'
@@ -13,10 +13,10 @@ import styles from './styles.module.css'
 import { useAppDispatch } from '@/app/core/redux/hooks'
 
 interface Props {
-  project?: Project
+  project?: IProject
 }
 
-export default function ProjectComponent ({
+export default function Project ({
   project
 }: Props): React.ReactElement {
   const [projectQueryEnabled, setProjectQueryEnabled] = useState(false)
