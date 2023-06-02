@@ -1,0 +1,40 @@
+.container {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+}
+
+.small {
+  width: 20px;
+  height: 20px;
+}
+
+.small > span {
+  color: var(--white-color);
+  font-weight: bold;
+  font-size: var(--text-small);
+}
+
+.medium {
+  width: 24px;
+  height: 24px;
+}
+
+.medium > span {
+  color: var(--white-color);
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.large {
+  width: 32px;
+  height: 32px;
+}
+
+.large > span {
+  color: var(--white-color);
+  font-weight: bold;
+  font-size: var(--text-large);
+}
