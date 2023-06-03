@@ -1,28 +1,15 @@
 'use client'
-import React, { type MouseEventHandler, useState } from 'react'
+import React from 'react'
 import Avatar from '../avatar/avatar'
 import Window from '../window/window'
 import styles from './styles.module.css'
-import useSessionStorage from '@/app/core/hooks/useSessionStorage'
-import { useRouter } from 'next/navigation'
-import { useAppSelector } from '@/app/core/redux/hooks'
+
 import ProjectSelector from '../project/selector/selector'
+import useNavbar from './useNavbar'
 
 export default function NavbarComponent (): React.ReactElement {
-  const [userSettingOpen, setUserSettingOpen] = useState(true)
-  const user = useAppSelector((state) => state.user.user)
-  const { removeValue } = useSessionStorage()
-  const router = useRouter()
-
-  const handleUserSettingOpen: MouseEventHandler<HTMLLIElement> = (event) => {
-    event.stopPropagation()
-    setUserSettingOpen(!userSettingOpen)
-  }
-
-  const handleLogOut: MouseEventHandler<HTMLLIElement> = () => {
-    removeValue('token')
-    router.push('/login')
-  }
+  const { user, userSettingOpen, handleUserSettingOpen, handleLogOut } =
+    useNavbar()
 
   return (
     <>

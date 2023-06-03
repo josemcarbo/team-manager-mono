@@ -1,34 +1,22 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import { useAppSelector, useAppDispatch } from '@/app/core/redux/hooks'
+import React from 'react'
 import { HiPlusSmall, HiOutlineChevronUpDown } from 'react-icons/hi2'
-import { selectProject } from '@/app/core/redux/features/projectSlice'
 import Window from '../../window/window'
+import useSelector from './useSelector'
 import styles from './styles.module.css'
 
 export default function ProjectSelectorComponent (): React.ReactElement {
-  const projects = useAppSelector((state) => state.project.projects)
-  const selectedProject = useAppSelector((state) => state.project.project)
-  const [projectSettingOpen, setProjectSettingOpen] = useState(true)
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    if (projects.length > 0) {
-      selectedProject === null && dispatch(selectProject(projects[0]))
-    }
-  }, [projects])
-
-  const handleProjectSettingOpen = (): void => {
-    setProjectSettingOpen(!projectSettingOpen)
-  }
-
-  const handleProjectSelected = (index: number): void => {
-    dispatch(selectProject(projects[index]))
-  }
+  const {
+    project,
+    projectList,
+    projectSettingOpen,
+    handleProjectSelected,
+    handleProjectSettingOpen
+  } = useSelector()
 
   return (
     <section className={styles.container} onClick={handleProjectSettingOpen}>
-      {selectedProject === null
+      {project === null
         ? (
         <div className={styles.button}>
           <HiPlusSmall className={styles.icon} />
@@ -38,21 +26,21 @@ export default function ProjectSelectorComponent (): React.ReactElement {
         : (
         <div className={styles.project_selected}>
           <HiOutlineChevronUpDown className={styles.icon} />
-          <span>{selectedProject?.name}</span>
+          <span>{project?.name}</span>
         </div>
           )}
       <div className={styles.modal_container}>
         <Window hidden={projectSettingOpen}>
           <article className={styles.project_available_container}>
-            {projects?.map((project, i) => (
+            {projectList?.map((item, i) => (
               <button
-                key={project.id}
-                disabled={selectedProject?.id === project.id}
+                key={item.id}
+                disabled={project?.id === item.id}
                 onClick={() => {
                   handleProjectSelected(i)
                 }}
               >
-                <span>{project.name}</span>
+                <span>{item.name}</span>
               </button>
             ))}
             <div className={styles.separator}></div>
