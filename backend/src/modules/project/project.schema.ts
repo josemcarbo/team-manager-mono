@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Schema as MongooseSchema, Types } from 'mongoose';
+import { IProjectLabel } from './project.interface';
 
 export type ProjectDocument = HydratedDocument<Project>;
 
@@ -10,6 +11,12 @@ export class Project {
 
   @Prop({ required: false })
   description?: string;
+
+  @Prop({ required: false, default: [] })
+  list?: string[];
+
+  @Prop({ required: false, default: [] })
+  labels?: IProjectLabel[];
 
   @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: 'Users' })
   owner: Types.ObjectId;

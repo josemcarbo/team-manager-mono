@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
 import {
+  ProjectCreateLabelRequestDto,
   ProjectCreateRequestDto,
   ProjectFindOneRequestDto,
   ProjectFindOneResponseDto,
@@ -45,5 +46,16 @@ export class ProjectController {
   ): Promise<IProject> {
     const owner = request.user.id;
     return this.projectService.create({ ...project, owner });
+  }
+
+  @ApiBearerAuth()
+  @ApiResponse({ status: 200, type: ProjectFindOneResponseDto })
+  @ApiOperation({ description: 'Add a project label' })
+  @Post('/:id/label')
+  createLabel(
+    @Body() label: ProjectCreateLabelRequestDto,
+    @Param() { id }: ProjectFindOneRequestDto,
+  ): Promise<IProject> {
+    return this.projectService.addNewLabel(id, label);
   }
 }

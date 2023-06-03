@@ -1,6 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsMongoId, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsMongoId,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { Types } from 'mongoose';
+import { IProjectLabel } from './project.interface';
 
 export class ProjectFindOneRequestDto {
   @ApiProperty({
@@ -23,6 +30,12 @@ export class ProjectFindOneResponseDto {
   @ApiProperty()
   description?: string;
 
+  @ApiProperty()
+  list: string[];
+
+  @ApiProperty()
+  labels: IProjectLabel[];
+
   @ApiProperty({
     format: 'mongoid',
   })
@@ -31,7 +44,7 @@ export class ProjectFindOneResponseDto {
   @ApiProperty({
     type: [Types.ObjectId],
   })
-  members?: Types.ObjectId[];
+  members: Types.ObjectId[];
 
   @ApiProperty()
   createdAt: Date;
@@ -50,4 +63,26 @@ export class ProjectCreateRequestDto {
   @IsString()
   @IsOptional()
   description?: string;
+
+  @ApiProperty()
+  @IsArray()
+  @IsOptional()
+  list?: string[];
+
+  @ApiProperty()
+  @IsArray()
+  @IsOptional()
+  labels?: IProjectLabel[];
+}
+
+export class ProjectCreateLabelRequestDto {
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  text: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  color: string;
 }

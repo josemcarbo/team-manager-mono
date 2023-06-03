@@ -1,5 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { IProject, IProjectFindParam } from './project.interface';
+import {
+  IProject,
+  IProjectFindParam,
+  IProjectLabel,
+} from './project.interface';
 import { ProjectRepository } from './project.repository';
 
 @Injectable()
@@ -18,5 +22,11 @@ export class ProjectService {
 
   async create(project: IProject): Promise<IProject> {
     return this.projectRepository.create(project);
+  }
+
+  async addNewLabel(id: string, label: IProjectLabel): Promise<IProject> {
+    const project = await this.projectRepository.addNewLabel(id, label);
+    if (!project) throw new NotFoundException('Project not found');
+    return project;
   }
 }
