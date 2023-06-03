@@ -4,22 +4,27 @@ import { type IProject } from '../services/projectApi'
 
 interface ProjectState {
   projects: IProject[]
+  project: IProject | null
 }
 
 const initialState = {
-  projects: []
+  projects: [],
+  project: null
 } as ProjectState
 
 export const project = createSlice({
   name: 'project',
   initialState,
   reducers: {
-    refresh: (state, action: PayloadAction<IProject[]>) => {
+    refreshList: (state, action: PayloadAction<IProject[]>) => {
       state.projects = action.payload
+    },
+    selectProject: (state, action: PayloadAction<IProject>) => {
+      state.project = action.payload
     }
   }
 })
 
-export const { refresh } = project.actions
+export const { refreshList, selectProject } = project.actions
 
 export default project.reducer

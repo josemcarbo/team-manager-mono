@@ -5,20 +5,13 @@ import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
 import {
   useCreateProjectMutation,
-  type IProject,
   useFindAllProjectQuery
 } from '@/app/core/redux/services/projectApi'
-import { refresh } from '@/app/core/redux/features/projectSlice'
+import { refreshList } from '@/app/core/redux/features/projectSlice'
 import styles from './styles.module.css'
 import { useAppDispatch } from '@/app/core/redux/hooks'
 
-interface Props {
-  project?: IProject
-}
-
-export default function ProjectComponent ({
-  project
-}: Props): React.ReactElement {
+export default function ProjectComponent (): React.ReactElement {
   const [projectQueryEnabled, setProjectQueryEnabled] = useState(false)
   const [createProject, { isSuccess, data, error, isError }] =
     useCreateProjectMutation()
@@ -49,7 +42,7 @@ export default function ProjectComponent ({
 
   useEffect(() => {
     if (projectsIsSuccess && projects !== null) {
-      dispatch(refresh(projects))
+      dispatch(refreshList(projects))
     }
 
     if (projectsIsError && projectsError !== null) {

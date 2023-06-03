@@ -7,7 +7,7 @@ import { useGetUserQuery } from '@/app/core/redux/services/userApi'
 import { useFindAllProjectQuery } from '@/app/core/redux/services/projectApi'
 import { useAppDispatch } from '@/app/core/redux/hooks'
 import { addUser } from '@/app/core/redux/features/userSlice'
-import { refresh } from '@/app/core/redux/features/projectSlice'
+import { refreshList } from '@/app/core/redux/features/projectSlice'
 import styles from './page.module.css'
 import Loading from './components/loading/loading'
 import Navbar from './components/navbar/navbar'
@@ -56,7 +56,7 @@ export default function HomePage (): React.ReactElement {
 
   useEffect(() => {
     if (projectIsSuccess && projects !== null) {
-      dispatch(refresh(projects))
+      dispatch(refreshList(projects))
     }
 
     if (projectIsError && projectError !== null) {

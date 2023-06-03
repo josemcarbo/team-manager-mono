@@ -1,28 +1,29 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { useAppSelector } from '@/app/core/redux/hooks'
+import { useAppSelector, useAppDispatch } from '@/app/core/redux/hooks'
 import { HiPlusSmall, HiOutlineChevronUpDown } from 'react-icons/hi2'
-import styles from './styles.module.css'
-import { type IProject } from '@/app/core/redux/services/projectApi'
+import { selectProject } from '@/app/core/redux/features/projectSlice'
 import Window from '../../window/window'
+import styles from './styles.module.css'
 
 export default function ProjectSelectorComponent (): React.ReactElement {
   const projects = useAppSelector((state) => state.project.projects)
-  const [selectedProject, setSelectedProject] = useState<IProject | null>(null)
+  const selectedProject = useAppSelector((state) => state.project.project)
   const [projectSettingOpen, setProjectSettingOpen] = useState(true)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (projects.length > 0) {
-      selectedProject === null && setSelectedProject(projects[0])
+      selectedProject === null && dispatch(selectProject(projects[0]))
     }
   }, [projects])
 
-  const handleProjectSettingOpen = (event: any): void => {
+  const handleProjectSettingOpen = (): void => {
     setProjectSettingOpen(!projectSettingOpen)
   }
 
   const handleProjectSelected = (index: number): void => {
-    setSelectedProject(projects[index])
+    dispatch(selectProject(projects[index]))
   }
 
   return (
