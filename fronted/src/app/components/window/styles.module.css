@@ -9,18 +9,16 @@
     border-radius: 4px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
     background-color: var(--window-background-color);
-    padding: 10px 20px;
+    padding: 10px 15px;
     box-sizing: border-box;
     position: relative;
     cursor: auto;
 }
 
 .show {
-    opacity: 1;
-    transition: opacity 0.3s ease-in;
+    display: block;
   }
   
   .hidden {
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
+    display: none;
   }

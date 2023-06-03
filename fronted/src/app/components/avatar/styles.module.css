@@ -18,8 +18,8 @@
 }
 
 .medium {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
 }
 
 .medium > span {
@@ -29,8 +29,8 @@
 }
 
 .large {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
 }
 
 .large > span {

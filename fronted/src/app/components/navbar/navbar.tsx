@@ -2,13 +2,13 @@
 import React, { type MouseEventHandler, useState } from 'react'
 import Avatar from '../avatar/avatar'
 import Window from '../window/window'
-import { HiPlusSmall } from 'react-icons/hi2'
 import styles from './styles.module.css'
 import useSessionStorage from '@/app/core/hooks/useSessionStorage'
 import { useRouter } from 'next/navigation'
 import { useAppSelector } from '@/app/core/redux/hooks'
+import ProjectSelector from '../project/selector/selector'
 
-export default function Navbar (): React.ReactElement {
+export default function NavbarComponent (): React.ReactElement {
   const [userSettingOpen, setUserSettingOpen] = useState(true)
   const user = useAppSelector((state) => state.user.user)
   const { removeValue } = useSessionStorage()
@@ -30,12 +30,7 @@ export default function Navbar (): React.ReactElement {
         <nav className={styles.navbar}>
           <ul>
             <li className={styles.clickable}>
-              <article>
-                <div className={styles.button}>
-                  <HiPlusSmall className={styles.icon} />
-                  <span>New project</span>
-                </div>
-              </article>
+              <ProjectSelector />
             </li>
             <li className={styles.clickable} onClick={handleUserSettingOpen}>
               <Avatar

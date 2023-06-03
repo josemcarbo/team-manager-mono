@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import { type Project } from '../services/projectApi'
+import { type IProject } from '../services/projectApi'
 
 interface ProjectState {
-  projects: Project[]
+  projects: IProject[]
 }
 
 const initialState = {
@@ -14,7 +14,7 @@ export const project = createSlice({
   name: 'project',
   initialState,
   reducers: {
-    refresh: (state, action: PayloadAction<Project[]>) => {
+    refresh: (state, action: PayloadAction<IProject[]>) => {
       state.projects = action.payload
     }
   }

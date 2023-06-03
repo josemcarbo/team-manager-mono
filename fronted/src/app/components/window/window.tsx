@@ -8,7 +8,7 @@ interface Props {
   hidden: boolean
 }
 
-export default function Window ({
+export default function WindowComponent ({
   children,
   hidden
 }: Props): React.ReactElement {

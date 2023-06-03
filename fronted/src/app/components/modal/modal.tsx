@@ -8,7 +8,7 @@ interface Props {
   hidden: boolean
 }
 
-export default function Modal ({ children, hidden }: Props): React.ReactElement {
+export default function ModalComponent ({ children, hidden }: Props): React.ReactElement {
   return (
     <div
       className={classNames(

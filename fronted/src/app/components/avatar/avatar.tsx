@@ -8,7 +8,7 @@ interface Props {
   size: 'small' | 'medium' | 'large'
 }
 
-export default function Avatar (props: Props): React.ReactElement {
+export default function AvatarComponent (props: Props): React.ReactElement {
   const toShortAvatarName = (avatar: string): string => {
     const avatarSplit = avatar.split(' ')
     return avatarSplit.length === 1

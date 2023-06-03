@@ -16,7 +16,7 @@ interface Props {
   project?: IProject
 }
 
-export default function Project ({
+export default function ProjectComponent ({
   project
 }: Props): React.ReactElement {
   const [projectQueryEnabled, setProjectQueryEnabled] = useState(false)

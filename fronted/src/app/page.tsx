@@ -4,13 +4,13 @@ import { toast } from 'react-toastify'
 import useSessionStorage from '@/app/core/hooks/useSessionStorage'
 import React, { useEffect, useState } from 'react'
 import { useGetUserQuery } from '@/app/core/redux/services/userApi'
+import { useFindAllProjectQuery } from '@/app/core/redux/services/projectApi'
 import { useAppDispatch } from '@/app/core/redux/hooks'
 import { addUser } from '@/app/core/redux/features/userSlice'
+import { refresh } from '@/app/core/redux/features/projectSlice'
 import styles from './page.module.css'
 import Loading from './components/loading/loading'
 import Navbar from './components/navbar/navbar'
-import Modal from './components/modal/modal'
-import ProjectComponent from './components/project/project'
 
 export default function HomePage (): React.ReactElement {
   console.log('Home')
@@ -26,6 +26,14 @@ export default function HomePage (): React.ReactElement {
     error: userError,
     isLoading: userIsLoading
   } = useGetUserQuery(undefined, { skip: !userQueryEnabled })
+
+  const {
+    data: projects,
+    isSuccess: projectIsSuccess,
+    isError: projectIsError,
+    error: projectError,
+    isLoading: projectIsLoading
+  } = useFindAllProjectQuery(undefined, { skip: !userQueryEnabled })
 
   useEffect(() => {
     token === null ? router.push('/login') : setUserQueryEnabled(true)
@@ -46,16 +54,28 @@ export default function HomePage (): React.ReactElement {
     }
   }, [userIsSuccess, user, userIsError, userError])
 
+  useEffect(() => {
+    if (projectIsSuccess && projects !== null) {
+      dispatch(refresh(projects))
+    }
+
+    if (projectIsError && projectError !== null) {
+      const { status, data } = projectError as any
+      toast.error(
+        `${status as string}: ${
+          (data?.message ?? 'ERR_CONNECTION_REFUSED') as string
+        }`
+      )
+    }
+  }, [projects, projectIsSuccess, projectIsError, projectError])
+
   return (
     <>
-      {(userIsLoading || !userIsSuccess) && <Loading />}
+      {(userIsLoading || projectIsLoading) && <Loading />}
       {userIsSuccess && user !== null && (
         <main className={styles.container}>
           <Navbar />
           <section className={styles.section}></section>
-          <Modal hidden={false}>
-            <ProjectComponent/>
-          </Modal>
         </main>
       )}
     </>
