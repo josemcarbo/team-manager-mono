@@ -5,10 +5,10 @@ import styles from './styles.module.css'
 
 interface Props {
   children: React.ReactNode
-  hidden: boolean
+  hidden?: boolean
 }
 
-export default function ModalComponent ({ children, hidden }: Props): React.ReactElement {
+export default function OverlayComponent ({ children, hidden = false }: Props): React.ReactElement {
   return (
     <div
       className={classNames(
