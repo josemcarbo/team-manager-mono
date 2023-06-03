@@ -9,8 +9,8 @@ import { useAppDispatch } from '@/app/core/redux/hooks'
 import { addUser } from '@/app/core/redux/features/userSlice'
 import { refreshList } from '@/app/core/redux/features/projectSlice'
 import styles from './page.module.css'
-import Loading from './components/loading/loading'
-import Navbar from './components/navbar/navbar'
+import Loading from '../components/loading/loading'
+import Navbar from '../components/navbar/navbar'
 
 export default function HomePage (): React.ReactElement {
   console.log('Home')
