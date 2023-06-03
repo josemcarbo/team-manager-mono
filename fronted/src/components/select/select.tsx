@@ -2,12 +2,12 @@
 import React from 'react'
 import { HiPlusSmall, HiOutlineChevronUpDown } from 'react-icons/hi2'
 import Window from '../window/window'
+import styles from './styles.module.css'
 
 interface Props {
   item: any
   list: any[]
   open: boolean
-  styles: any
   entity: string
   handleSelected: (i: number) => void
   handleOpen: () => void
@@ -16,13 +16,12 @@ export default function SelectComponent ({
   item,
   list,
   open,
-  styles,
   entity,
   handleOpen,
   handleSelected
 }: Props): React.ReactElement {
   return (
-    <section className={styles.container} onClick={handleOpen}>
+    <section className={styles.container}>
       {item === null
         ? (
         <div className={styles.button}>
@@ -31,7 +30,7 @@ export default function SelectComponent ({
         </div>
           )
         : (
-        <div className={styles.project_selected}>
+        <div className={styles.project_selected} onClick={handleOpen}>
           <HiOutlineChevronUpDown className={styles.icon} />
           <span>{item?.name}</span>
         </div>
@@ -52,7 +51,10 @@ export default function SelectComponent ({
             ))}
             <div className={styles.separator}></div>
             <button className={styles.project_available}>
-              <span>Create {entity}</span>
+              <span>Edit</span>
+            </button>
+            <button className={styles.project_available}>
+              <span>Create</span>
             </button>
           </article>
         </Window>
