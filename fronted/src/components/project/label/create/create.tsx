@@ -25,6 +25,7 @@ export default function CreateLabelComponent (): React.ReactElement {
         <label className={styles.label}>Title</label>
         <input
           className={styles.input}
+          value={title}
           type="text"
           onChange={handleTitleChange}
         />

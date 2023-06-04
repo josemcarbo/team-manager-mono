@@ -30,6 +30,7 @@ export default function useCreateLabel (): IUseLabel {
   useEffect(() => {
     if (isSuccess) {
       dispatch(refreshOne(data as IProject))
+      setTitle('')
     }
 
     if (isError && error !== null) {

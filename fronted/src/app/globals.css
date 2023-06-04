@@ -20,6 +20,9 @@
   color: var(--text-primary-color);
 }
 
+button[disabled] {
+  cursor: not-allowed;
+}
 body {
   box-sizing: border-box;
   width: 100vw;
