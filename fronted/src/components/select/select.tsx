@@ -46,7 +46,7 @@ export default function SelectComponent ({
                   handleSelected(i)
                 }}
               >
-                <span>{element?.name}</span>
+                {element?.name}
               </button>
             ))}
             <div className={styles.separator}></div>

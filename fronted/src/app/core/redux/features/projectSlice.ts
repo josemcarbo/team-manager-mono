@@ -19,12 +19,20 @@ export const project = createSlice({
     refreshList: (state, action: PayloadAction<IProject[]>) => {
       state.projects = action.payload
     },
+    refreshOne: (state, action: PayloadAction<IProject>) => {
+      state.projects = state.projects.map((project) => {
+        if (project.id === action.payload.id) {
+          return action.payload
+        }
+        return project
+      })
+    },
     selectProject: (state, action: PayloadAction<IProject>) => {
       state.project = action.payload
     }
   }
 })
 
-export const { refreshList, selectProject } = project.actions
+export const { refreshOne, refreshList, selectProject } = project.actions
 
 export default project.reducer

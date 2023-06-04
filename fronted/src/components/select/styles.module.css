@@ -21,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   border-radius: 4px;
   padding: 5px 3px;
   gap: 5px;

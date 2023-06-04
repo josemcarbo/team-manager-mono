@@ -1,8 +1,13 @@
 :root {
   --white-color: #ffffff;
   --error-color: #cd1818;
-  --primary-color: #27374d;
-  --secondary-color: #116d6e;
+  --primary-color: #1565c0;
+  --secondary-color: #80d8ff;
+
+  --disabled-color: #b0bec5
+
+  --text-primary-color: #212121;
+  --text-secondary-color: #bdbdbd;
 
   --window-background-color: #fbfaf9;
 
@@ -12,7 +17,7 @@
 
   box-sizing: border-box;
   font-family: "Inconsolata", monospace;
-  color: var(--primary-color);
+  color: var(--text-primary-color);
 }
 
 body {
