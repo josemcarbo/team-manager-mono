@@ -18,7 +18,6 @@ export default function useNavbar (): UseNavbar {
   const router = useRouter()
 
   const handleUserSettingOpen: MouseEventHandler<HTMLLIElement> = (event) => {
-    event.stopPropagation()
     setUserSettingOpen(!userSettingOpen)
   }
 

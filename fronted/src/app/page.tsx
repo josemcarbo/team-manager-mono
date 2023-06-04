@@ -8,9 +8,8 @@ import { useFindAllProjectQuery } from '@/app/core/redux/services/projectApi'
 import { useAppDispatch } from '@/app/core/redux/hooks'
 import { addUser } from '@/app/core/redux/features/userSlice'
 import { refreshList } from '@/app/core/redux/features/projectSlice'
-import styles from './page.module.css'
 import Loading from '../components/loading/loading'
-import CreateLabel from '@/components/project/label/create/create'
+import ProjectCreate from '@/components/project/create/page'
 
 export default function HomePage (): React.ReactElement {
   const [userQueryEnabled, setUserQueryEnabled] = useState(false)
@@ -71,13 +70,7 @@ export default function HomePage (): React.ReactElement {
   return (
     <>
       {(userIsLoading || projectIsLoading) && <Loading />}
-      {userIsSuccess && user !== null && (
-        <main className={styles.container}>
-          <section className={styles.section}>
-            <CreateLabel />
-          </section>
-        </main>
-      )}
+      <ProjectCreate />
     </>
   )
 }

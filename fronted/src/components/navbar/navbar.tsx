@@ -10,7 +10,6 @@ import useNavbar from './useNavbar'
 export default function NavbarComponent (): React.ReactElement {
   const { user, userSettingOpen, handleUserSettingOpen, handleLogOut } =
     useNavbar()
-
   return (
     <>
       {user !== null &&

@@ -7,7 +7,7 @@ import {
   IsString,
 } from 'class-validator';
 import { Types } from 'mongoose';
-import { IProjectLabel } from './project.interface';
+import { IProjectLabel, IProjectList } from './project.interface';
 
 export class ProjectFindOneRequestDto {
   @ApiProperty({
@@ -31,7 +31,7 @@ export class ProjectFindOneResponseDto {
   description?: string;
 
   @ApiProperty()
-  list: string[];
+  list: IProjectList[];
 
   @ApiProperty()
   labels: IProjectLabel[];
@@ -67,7 +67,7 @@ export class ProjectCreateRequestDto {
   @ApiProperty()
   @IsArray()
   @IsOptional()
-  list?: string[];
+  list?: IProjectList[];
 
   @ApiProperty()
   @IsArray()

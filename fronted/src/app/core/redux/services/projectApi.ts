@@ -6,7 +6,7 @@ export interface IProject {
   name: string
   description?: string
   labels: ProjectLabel[]
-  list: string[]
+  list: ProjectList[]
   members: string[]
   owner: string
   createdAt: string
@@ -16,6 +16,7 @@ export interface IProject {
 interface CreateProject {
   name: string
   description?: string
+  list: ProjectList[]
 }
 
 interface FindAllProject {
@@ -26,6 +27,11 @@ interface FindAllProject {
 interface ProjectLabel {
   text: string
   color: string
+}
+
+export interface ProjectList {
+  text: string
+  order: number
 }
 
 interface AddNewLabel {

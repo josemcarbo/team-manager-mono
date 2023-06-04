@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Schema as MongooseSchema, Types } from 'mongoose';
-import { IProjectLabel } from './project.interface';
+import { IProjectLabel, IProjectList } from './project.interface';
 
 export type ProjectDocument = HydratedDocument<Project>;
 
@@ -13,7 +13,7 @@ export class Project {
   description?: string;
 
   @Prop({ required: false, default: [] })
-  list?: string[];
+  list?: IProjectList[];
 
   @Prop({ required: false, default: [] })
   labels?: IProjectLabel[];

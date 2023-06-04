@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useAppSelector, useAppDispatch } from '@/app/core/redux/hooks'
-import { selectProject } from '@/app/core/redux/features/projectSlice'
+import { selectProject, createViewOpen } from '@/app/core/redux/features/projectSlice'
 import { type IProject } from '@/app/core/redux/services/projectApi'
 
 interface UseSelector {
@@ -18,7 +17,6 @@ export default function useSelector (): UseSelector {
   const project = useAppSelector((state) => state.project.project)
   const [projectSettingOpen, setProjectSettingOpen] = useState(true)
   const dispatch = useAppDispatch()
-  const router = useRouter()
 
   useEffect(() => {
     if (projectList.length > 0) {
@@ -35,7 +33,7 @@ export default function useSelector (): UseSelector {
   }
 
   const handleProjectCreated = (): void => {
-    router.push('/project/create')
+    dispatch(createViewOpen(true))
   }
 
   return {

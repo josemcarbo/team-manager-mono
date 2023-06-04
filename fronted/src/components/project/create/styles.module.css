@@ -4,8 +4,8 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  width: 450px;
-  height: 420px;
+  width: 100%;
+  height: 100%;
   font-family: "Inconsolata", monospace;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .form {
-  width: 100%;
+  width: 300px;
   min-width: 275px;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
 }
 
 textarea.input {
-  height: 150px;
+  height: 100px;
   resize: none;
 }
 
@@ -50,11 +50,19 @@ textarea.input {
 }
 
 .button {
-  width: 45%;
-  padding: 10px 15px;
+  width: 100%;
+  padding: 10px 20px;
   border-radius: 4px;
-  cursor: pointer;
+  border: 0;
+  background-color: var(--primary-color);
+  color: var(--white-color);
   font-size: var(--text-large);
+  cursor: pointer;
+}
+
+.button[disabled] {
+  background-color: var(--disabled-color);
+  color: var(--text-primary-color);
 }
 
 .group_button {
@@ -62,4 +70,25 @@ textarea.input {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+}
+
+.form_container {
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 30px 20px 20px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.form_container > .icon {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  border-radius: 50px;
+  padding: 3px;
+}
+
+.form_container > .icon:hover {
+  transform: scale(1.1);
 }

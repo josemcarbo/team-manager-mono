@@ -25,44 +25,54 @@ export default function SelectComponent ({
   handleEdit
 }: Props): React.ReactElement {
   return (
-    <section className={styles.container} onClick={handleOpen}>
+    <>
       {item === null
         ? (
-        <div className={styles.button}>
-          <HiPlusSmall className={styles.icon} />
-          <span>New {entity}</span>
-        </div>
+        <section className={styles.container}>
+          <div className={styles.button} onClick={handleCreate}>
+            <HiPlusSmall className={styles.icon} />
+            <span>New {entity}</span>
+          </div>
+        </section>
           )
         : (
-        <div className={styles.project_selected}>
-          <HiOutlineChevronUpDown className={styles.icon} />
-          <span>{item?.name}</span>
-        </div>
+        <section className={styles.container} onClick={handleOpen}>
+          <div className={styles.project_selected}>
+            <HiOutlineChevronUpDown className={styles.icon} />
+            <span>{item?.name}</span>
+          </div>
+          <div className={styles.modal_container}>
+            <Window hidden={open}>
+              <article className={styles.project_available_container}>
+                {list?.map((element, i) => (
+                  <button
+                    key={element.id}
+                    disabled={element?.id === item?.id}
+                    onClick={() => {
+                      handleSelected(i)
+                    }}
+                  >
+                    {element?.name}
+                  </button>
+                ))}
+                <div className={styles.separator}></div>
+                <button
+                  className={styles.project_available}
+                  onClick={handleEdit}
+                >
+                  <span>Edit</span>
+                </button>
+                <button
+                  className={styles.project_available}
+                  onClick={handleCreate}
+                >
+                  <span>Create</span>
+                </button>
+              </article>
+            </Window>
+          </div>
+        </section>
           )}
-      <div className={styles.modal_container}>
-        <Window hidden={open}>
-          <article className={styles.project_available_container}>
-            {list?.map((element, i) => (
-              <button
-                key={element.id}
-                disabled={element?.id === item?.id}
-                onClick={() => {
-                  handleSelected(i)
-                }}
-              >
-                {element?.name}
-              </button>
-            ))}
-            <div className={styles.separator}></div>
-            <button className={styles.project_available} onClick={handleEdit}>
-              <span>Edit</span>
-            </button>
-            <button className={styles.project_available} onClick={handleCreate}>
-              <span>Create</span>
-            </button>
-          </article>
-        </Window>
-      </div>
-    </section>
+    </>
   )
 }
