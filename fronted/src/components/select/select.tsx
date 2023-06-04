@@ -11,6 +11,8 @@ interface Props {
   entity: string
   handleSelected: (i: number) => void
   handleOpen: () => void
+  handleCreate?: () => void
+  handleEdit?: () => void
 }
 export default function SelectComponent ({
   item,
@@ -18,10 +20,12 @@ export default function SelectComponent ({
   open,
   entity,
   handleOpen,
-  handleSelected
+  handleSelected,
+  handleCreate,
+  handleEdit
 }: Props): React.ReactElement {
   return (
-    <section className={styles.container}>
+    <section className={styles.container} onClick={handleOpen}>
       {item === null
         ? (
         <div className={styles.button}>
@@ -30,7 +34,7 @@ export default function SelectComponent ({
         </div>
           )
         : (
-        <div className={styles.project_selected} onClick={handleOpen}>
+        <div className={styles.project_selected}>
           <HiOutlineChevronUpDown className={styles.icon} />
           <span>{item?.name}</span>
         </div>
@@ -50,10 +54,10 @@ export default function SelectComponent ({
               </button>
             ))}
             <div className={styles.separator}></div>
-            <button className={styles.project_available}>
+            <button className={styles.project_available} onClick={handleEdit}>
               <span>Edit</span>
             </button>
-            <button className={styles.project_available}>
+            <button className={styles.project_available} onClick={handleCreate}>
               <span>Create</span>
             </button>
           </article>

@@ -8,7 +8,8 @@ export default function ProjectSelectorComponent (): React.ReactElement {
     projectList,
     projectSettingOpen,
     handleProjectSelected,
-    handleProjectSettingOpen
+    handleProjectSettingOpen,
+    handleProjectCreated
   } = useSelector()
 
   return (
@@ -19,6 +20,7 @@ export default function ProjectSelectorComponent (): React.ReactElement {
       open={projectSettingOpen}
       handleSelected={handleProjectSelected}
       handleOpen={handleProjectSettingOpen}
+      handleCreate={handleProjectCreated}
     />
   )
 }

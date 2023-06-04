@@ -17,7 +17,9 @@ export default function RootLayout ({ children }: Props): React.ReactElement {
   return (
     <html lang="en">
       <body className={inconsolata.className} suppressHydrationWarning={true}>
-          <App>{children}</App>
+        <App>
+          {children}
+        </App>
       </body>
     </html>
   )

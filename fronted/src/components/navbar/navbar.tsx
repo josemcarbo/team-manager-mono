@@ -13,7 +13,8 @@ export default function NavbarComponent (): React.ReactElement {
 
   return (
     <>
-      {user !== null && (
+      {user !== null &&
+        (
         <nav className={styles.navbar}>
           <ul>
             <li className={styles.clickable}>
@@ -60,7 +61,7 @@ export default function NavbarComponent (): React.ReactElement {
             </li>
           </ul>
         </nav>
-      )}
+        )}
     </>
   )
 }

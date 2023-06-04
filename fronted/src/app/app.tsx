@@ -3,8 +3,9 @@ import React from 'react'
 import { Providers } from './core/redux/provider'
 import { ToastContainer, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
-
 import './globals.css'
+import styles from './app.module.css'
+import Navbar from '@/components/navbar/navbar'
 
 interface Props {
   children: React.ReactNode
@@ -29,7 +30,10 @@ export default function App ({ children }: Props): React.ReactElement {
           limit={3}
           transition={Slide}
         />
-        {children}
+        <div className={styles.app_container}>
+          <Navbar />
+          {children}
+        </div>
       </Providers>
     </>
   )

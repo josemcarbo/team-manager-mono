@@ -10,7 +10,6 @@ import { addUser } from '@/app/core/redux/features/userSlice'
 import { refreshList } from '@/app/core/redux/features/projectSlice'
 import styles from './page.module.css'
 import Loading from '../components/loading/loading'
-import Navbar from '../components/navbar/navbar'
 import CreateLabel from '@/components/project/label/create/create'
 
 export default function HomePage (): React.ReactElement {
@@ -74,7 +73,6 @@ export default function HomePage (): React.ReactElement {
       {(userIsLoading || projectIsLoading) && <Loading />}
       {userIsSuccess && user !== null && (
         <main className={styles.container}>
-          <Navbar />
           <section className={styles.section}>
             <CreateLabel />
           </section>

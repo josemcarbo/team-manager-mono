@@ -29,3 +29,5 @@ export const COLOR_LIST = [
   '#ffab40',
   '#ffd180'
 ]
+
+export const BOARD_LIST = ['To Do', 'In Progress', 'Done']
