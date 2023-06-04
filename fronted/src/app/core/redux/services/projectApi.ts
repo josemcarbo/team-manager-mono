@@ -6,7 +6,7 @@ export interface IProject {
   name: string
   description?: string
   labels: ProjectLabel[]
-  list: ProjectList[]
+  list: string[]
   members: string[]
   owner: string
   createdAt: string
@@ -16,7 +16,7 @@ export interface IProject {
 interface CreateProject {
   name: string
   description?: string
-  list: ProjectList[]
+  list: string[]
 }
 
 interface FindAllProject {
@@ -29,14 +29,14 @@ interface ProjectLabel {
   color: string
 }
 
-export interface ProjectList {
-  text: string
-  order: number
-}
-
 interface AddNewLabel {
   id: string
   label: ProjectLabel
+}
+
+interface AddNewList {
+  id: string
+  list: string
 }
 
 const token = sessionStorage?.getItem('token') as string
@@ -66,6 +66,13 @@ export const projectApi = createApi({
         method: 'POST',
         body: label
       })
+    }),
+    addNewList: builder.mutation<IProject, AddNewList>({
+      query: ({ id, list }) => ({
+        url: `/${id}/list`,
+        method: 'POST',
+        body: { list }
+      })
     })
   })
 })
@@ -74,5 +81,6 @@ export const {
   useFindOneProjectQuery,
   useFindAllProjectQuery,
   useCreateProjectMutation,
-  useAddNewLabelMutation
+  useAddNewLabelMutation,
+  useAddNewListMutation
 } = projectApi

@@ -5,16 +5,11 @@ export interface IProjectLabel {
   color: string;
 }
 
-export interface IProjectList {
-  text: string;
-  order: number;
-}
-
 export interface IProject {
   id?: ObjectId;
   name: string;
   description?: string;
-  list?: IProjectList[];
+  list?: string[];
   labels?: IProjectLabel[];
   owner: ObjectId;
   members?: ObjectId[];

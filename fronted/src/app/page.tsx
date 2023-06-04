@@ -10,6 +10,8 @@ import { addUser } from '@/app/core/redux/features/userSlice'
 import { refreshList } from '@/app/core/redux/features/projectSlice'
 import Loading from '../components/loading/loading'
 import ProjectCreate from '@/components/project/create/page'
+import styles from './page.module.css'
+import Board from '@/components/board/board'
 
 export default function HomePage (): React.ReactElement {
   const [userQueryEnabled, setUserQueryEnabled] = useState(false)
@@ -70,6 +72,9 @@ export default function HomePage (): React.ReactElement {
   return (
     <>
       {(userIsLoading || projectIsLoading) && <Loading />}
+      <section className={styles.container}>
+        <Board />
+      </section>
       <ProjectCreate />
     </>
   )

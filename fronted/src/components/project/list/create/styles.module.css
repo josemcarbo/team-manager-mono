@@ -1,0 +1,60 @@
+.container {
+    box-sizing: border-box;
+    max-height: 95vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .header > span {
+    font-weight: 500;
+    font-size: var(--text-medium);
+    color: var(--text-color);
+  }
+
+  .header > .icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .edit > input {
+    box-sizing: border-box;
+    padding: 5px 10px;
+    font-size: var(--text-medium);
+  }
+
+  .button_group {
+    width: 100%;
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .button_group > button {
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .button_group > button:hover {
+    transform: scale(1.1);
+  }
+  

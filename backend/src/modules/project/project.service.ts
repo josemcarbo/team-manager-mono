@@ -29,4 +29,10 @@ export class ProjectService {
     if (!project) throw new NotFoundException('Project not found');
     return project;
   }
+
+  async addNewList(id: string, list: string): Promise<IProject> {
+    const project = await this.projectRepository.addNewList(id, list);
+    if (!project) throw new NotFoundException('Project not found');
+    return project;
+  }
 }

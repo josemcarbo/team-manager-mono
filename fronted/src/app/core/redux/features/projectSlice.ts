@@ -37,6 +37,11 @@ export const project = createSlice({
               }
               return project
             }))
+
+      state.project =
+        state.project !== null && action.payload.id === state.project.id
+          ? action.payload
+          : state.project
     },
     selectProject: (state, action: PayloadAction<IProject>) => {
       state.project = action.payload

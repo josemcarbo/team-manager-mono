@@ -46,4 +46,9 @@ export class ProjectRepository {
     });
     return this.findOne(id);
   }
+  async addNewList(id: string, item: string): Promise<IProject> {
+    console.log(item);
+    await this.update(id, { $push: { list: item } });
+    return this.findOne(id);
+  }
 }

@@ -20,9 +20,28 @@
   color: var(--text-primary-color);
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  opacity: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-color);
+}
+
 button[disabled] {
   cursor: not-allowed;
 }
+
 body {
   box-sizing: border-box;
   width: 100vw;
