@@ -27,14 +27,20 @@ export interface ICardFindParam {
   owner?: string
 }
 
-const token = sessionStorage?.getItem('token') as string
+let token = ''
+if (typeof localStorage?.getItem('token') === 'string') {
+  token = `Bearer ${(localStorage?.getItem('token') as string).replace(
+    /"/g,
+    ''
+  )}`
+}
 
 export const cardApi = createApi({
   reducerPath: 'cardApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_API_URL}/cards`,
     prepareHeaders: (headers) => {
-      headers.set('Authorization', `Bearer ${token.replace(/"/g, '')}`)
+      headers.set('Authorization', token)
       return headers
     }
   }),
@@ -45,6 +51,4 @@ export const cardApi = createApi({
   })
 })
 
-export const {
-  useFindAllCardQuery
-} = cardApi
+export const { useFindAllCardQuery } = cardApi

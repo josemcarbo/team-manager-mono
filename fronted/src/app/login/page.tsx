@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import styles from './styles.module.css'
 import { useLoginMutation } from '@/app/core/redux/services/authAApi'
-import useSessionStorage from '@/app/core/hooks/useSessionStorage'
+import useSessionStorage from '@/app/core/hooks/useLocalStorage'
 
 export default function LoginPage (): React.ReactElement {
   const router = useRouter()

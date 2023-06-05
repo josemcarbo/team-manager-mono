@@ -1,5 +1,5 @@
 import { type MouseEventHandler, useState } from 'react'
-import useSessionStorage from '@/app/core/hooks/useSessionStorage'
+import useSessionStorage from '@/app/core/hooks/useLocalStorage'
 import { useRouter } from 'next/navigation'
 import { useAppSelector } from '@/app/core/redux/hooks'
 import { type User } from '@/app/core/redux/services/userApi'

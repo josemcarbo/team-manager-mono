@@ -1,8 +1,9 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import useSessionStorage from '@/app/core/hooks/useSessionStorage'
-import React, { useEffect, useState } from 'react'
+import { skipToken } from '@reduxjs/toolkit/query/react'
+import useSessionStorage from '@/app/core/hooks/useLocalStorage'
+import React, { useEffect } from 'react'
 import { useGetUserQuery } from '@/app/core/redux/services/userApi'
 import { useFindAllProjectQuery } from '@/app/core/redux/services/projectApi'
 import { useAppDispatch } from '@/app/core/redux/hooks'
@@ -14,7 +15,6 @@ import styles from './page.module.css'
 import Board from '@/components/board/board'
 
 export default function HomePage (): React.ReactElement {
-  const [userQueryEnabled, setUserQueryEnabled] = useState(false)
   const router = useRouter()
   const dispatch = useAppDispatch()
   const { getValue } = useSessionStorage()
@@ -25,7 +25,7 @@ export default function HomePage (): React.ReactElement {
     isError: userIsError,
     error: userError,
     isLoading: userIsLoading
-  } = useGetUserQuery(undefined, { skip: !userQueryEnabled })
+  } = useGetUserQuery(token ?? skipToken)
 
   const {
     data: projects,
@@ -33,10 +33,10 @@ export default function HomePage (): React.ReactElement {
     isError: projectIsError,
     error: projectError,
     isLoading: projectIsLoading
-  } = useFindAllProjectQuery(undefined, { skip: !userQueryEnabled })
+  } = useFindAllProjectQuery(token ?? skipToken)
 
   useEffect(() => {
-    token === null ? router.push('/login') : setUserQueryEnabled(true)
+    token === null && router.push('/login')
   }, [token])
 
   useEffect(() => {
