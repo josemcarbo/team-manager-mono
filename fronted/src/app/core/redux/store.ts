@@ -5,6 +5,7 @@ import user from './features/userSlice'
 import project from './features/projectSlice'
 import { userApi } from './services/userApi'
 import { projectApi } from './services/projectApi'
+import { cardApi } from './services/cardApi'
 
 export const store = configureStore({
   reducer: {
@@ -12,7 +13,8 @@ export const store = configureStore({
     project,
     [authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
-    [projectApi.reducerPath]: projectApi.reducer
+    [projectApi.reducerPath]: projectApi.reducer,
+    [cardApi.reducerPath]: cardApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({})
