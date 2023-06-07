@@ -4,7 +4,7 @@ import Avatar from '../avatar/avatar'
 import Window from '../window/window'
 import styles from './styles.module.css'
 
-import ProjectSelector from '../project/selector/selector'
+import BoardSelector from '../board/selector/selector'
 import useNavbar from './useNavbar'
 
 export default function NavbarComponent (): React.ReactElement {
@@ -17,7 +17,7 @@ export default function NavbarComponent (): React.ReactElement {
         <nav className={styles.navbar}>
           <ul>
             <li className={styles.clickable}>
-              <ProjectSelector />
+              <BoardSelector />
             </li>
             <li className={styles.clickable} onClick={handleUserSettingOpen}>
               <Avatar

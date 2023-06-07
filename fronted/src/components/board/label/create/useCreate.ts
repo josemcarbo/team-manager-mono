@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useAppDispatch, useAppSelector } from '@/app/core/redux/hooks'
-import { refreshOne } from '@/app/core/redux/features/projectSlice'
+import { refreshOne } from '@/app/core/redux/features/boardSlice'
 import { COLOR_LIST } from '@/app/core/constants'
 import {
   useAddNewLabelMutation,
-  type IProject
-} from '@/app/core/redux/services/projectApi'
+  type IBoard
+} from '@/app/core/redux/services/boardApi'
 
 interface IUseLabel {
   colors: string[]
   color: string
   title: string
-  project: IProject | null
+  board: IBoard | null
   handleColorClick: (color: string) => void
   handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleCreateLabel: () => Promise<void>
@@ -21,7 +21,7 @@ interface IUseLabel {
 export default function useCreateLabel (): IUseLabel {
   const [color, setColor] = useState<string>(COLOR_LIST[0])
   const [title, setTitle] = useState<string>('')
-  const project = useAppSelector((state) => state.project.project)
+  const board = useAppSelector((state) => state.board.board)
   const [addNewLabel, { isSuccess, data, error, isError }] =
     useAddNewLabelMutation()
 
@@ -29,7 +29,7 @@ export default function useCreateLabel (): IUseLabel {
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(refreshOne(data as IProject))
+      dispatch(refreshOne(data as IBoard))
       setTitle('')
     }
 
@@ -48,12 +48,12 @@ export default function useCreateLabel (): IUseLabel {
   }
 
   const handleCreateLabel = async (): Promise<void> => {
-    project !== null &&
-      (await addNewLabel({ id: project.id, label: { text: title, color } }))
+    board !== null &&
+      (await addNewLabel({ id: board.id, label: { text: title, color } }))
   }
 
   return {
-    project,
+    board,
     title,
     color,
     colors: COLOR_LIST,

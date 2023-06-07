@@ -30,4 +30,4 @@ export const COLOR_LIST = [
   '#ffd180'
 ]
 
-export const BOARD_LIST = ['To Do', 'In Progress', 'Done']
+export const BOARD_LIST = ['Not Started', 'In Progress', 'Changes Required', 'Review', 'Done']

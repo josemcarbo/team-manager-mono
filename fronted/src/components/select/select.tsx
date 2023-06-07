@@ -37,13 +37,13 @@ export default function SelectComponent ({
           )
         : (
         <section className={styles.container} onClick={handleOpen}>
-          <div className={styles.project_selected}>
+          <div className={styles.selected}>
             <HiOutlineChevronUpDown className={styles.icon} />
             <span>{item?.name}</span>
           </div>
           <div className={styles.modal_container}>
             <Window hidden={open}>
-              <article className={styles.project_available_container}>
+              <article className={styles.available_container}>
                 {list?.map((element, i) => (
                   <button
                     key={element.id}
@@ -57,13 +57,13 @@ export default function SelectComponent ({
                 ))}
                 <div className={styles.separator}></div>
                 <button
-                  className={styles.project_available}
+                  className={styles.available}
                   onClick={handleEdit}
                 >
                   <span>Edit</span>
                 </button>
                 <button
-                  className={styles.project_available}
+                  className={styles.available}
                   onClick={handleCreate}
                 >
                   <span>Create</span>

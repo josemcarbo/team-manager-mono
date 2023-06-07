@@ -33,8 +33,8 @@ export class Card {
   @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: 'Users' })
   owner: Types.ObjectId;
 
-  @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: 'Project' })
-  project: Types.ObjectId;
+  @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: 'Board' })
+  board: Types.ObjectId;
 
   @Prop({ require: true })
   points?: number;

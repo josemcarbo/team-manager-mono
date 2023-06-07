@@ -12,7 +12,7 @@ import useCreateList from './useCreate'
 export default function ColumnCreateComponent (): React.ReactElement {
   const {
     name,
-    project,
+    board,
     showEditMode,
     handleShowAddList,
     handleOnChangeName,
@@ -20,7 +20,7 @@ export default function ColumnCreateComponent (): React.ReactElement {
   } = useCreateList()
   return (
     <>
-      {project !== null && (
+      {board !== null && (
         <article className={styles.container}>
           {!showEditMode
             ? (

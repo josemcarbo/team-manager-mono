@@ -1,15 +1,15 @@
 import { toast } from 'react-toastify'
 import { useAppDispatch, useAppSelector } from '@/app/core/redux/hooks'
 import {
-  type IProject,
+  type IBoard,
   useAddNewListMutation
-} from '@/app/core/redux/services/projectApi'
+} from '@/app/core/redux/services/boardApi'
 import { useEffect, useState } from 'react'
-import { refreshOne } from '@/app/core/redux/features/projectSlice'
+import { refreshOne } from '@/app/core/redux/features/boardSlice'
 
 interface IUserCreateList {
   name: string
-  project: IProject | null
+  board: IBoard | null
   showEditMode: boolean
   handleShowAddList: () => void
   handleOnChangeName: (event: any) => void
@@ -18,14 +18,14 @@ interface IUserCreateList {
 export default function useCreateList (): IUserCreateList {
   const [showEditMode, setShowEditMode] = useState(false)
   const [name, setName] = useState('')
-  const project = useAppSelector((state) => state.project.project)
+  const board = useAppSelector((state) => state.board.board)
   const [addNewList, { isSuccess, data, error, isError }] =
     useAddNewListMutation()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(refreshOne(data as IProject))
+      dispatch(refreshOne(data as IBoard))
       setName('')
       setShowEditMode(false)
     }
@@ -45,12 +45,12 @@ export default function useCreateList (): IUserCreateList {
   }
 
   const handleCreateList = async (): Promise<void> => {
-    project !== null && (await addNewList({ id: project.id, list: name }))
+    board !== null && (await addNewList({ id: board.id, list: name }))
   }
 
   return {
     name,
-    project,
+    board,
     showEditMode,
     handleShowAddList,
     handleOnChangeName,

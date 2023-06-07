@@ -6,9 +6,9 @@ import OverlayComponent from '@/components/overlay/overlay'
 import useCreate from './useCreate'
 import { HiOutlineXMark } from 'react-icons/hi2'
 
-export default function ProjectCreateComponent (): React.ReactElement {
+export default function BoardCreateComponent (): React.ReactElement {
   const {
-    project,
+    board,
     isCreateViewOpen,
     onChangeNameValue,
     onChangeDescriptionValue,
@@ -30,7 +30,7 @@ export default function ProjectCreateComponent (): React.ReactElement {
                 <div className={styles.input_container}>
                   <label className={styles.placeholder}>Name*</label>
                   <input
-                    value={project.name}
+                    value={board.name}
                     required
                     className={styles.input}
                     onChange={onChangeNameValue}
@@ -41,7 +41,7 @@ export default function ProjectCreateComponent (): React.ReactElement {
                   <label className={styles.placeholder}>Description</label>
                   <textarea
                     className={styles.input}
-                    value={project.description}
+                    value={board.description}
                     onChange={onChangeDescriptionValue}
                   />
                 </div>
@@ -49,7 +49,7 @@ export default function ProjectCreateComponent (): React.ReactElement {
                   <button
                     className={styles.button}
                     type="submit"
-                    disabled={project.name === ''}
+                    disabled={board.name === ''}
                   >
                     Create
                   </button>

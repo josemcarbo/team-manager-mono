@@ -10,15 +10,14 @@ export class CardRepository {
   constructor(@InjectModel(Card.name) private db: Model<Card>) {}
 
   async find(params: ICardFindParam): Promise<ICard[]> {
-    const projects = await this.db.find(params);
+    const cards = await this.db.find(params);
     return (
-      projects &&
-      projects.map((project) => CardTransformer.toResponse(project.toObject()))
+      cards && cards.map((card) => CardTransformer.toResponse(card.toObject()))
     );
   }
 
   async findOne(id: string): Promise<ICard> {
-    // TODO: const project = await this.db.findById(id).lean().populate('owner');
+    // TODO: const card = await this.db.findById(id).lean().populate('owner');
     const card = await this.db.findById(id);
     return card && CardTransformer.toResponse(card.toObject());
   }
