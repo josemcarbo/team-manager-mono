@@ -1,11 +1,11 @@
 import { BASE_API_URL } from '@/app/core/constants'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export interface IProject {
+export interface IBoard {
   id: string
   name: string
   description?: string
-  labels: ProjectLabel[]
+  labels: BoardLabel[]
   list: string[]
   members: string[]
   owner: string
@@ -13,25 +13,25 @@ export interface IProject {
   updatedAt: string
 }
 
-interface CreateProject {
+interface CreateBoard {
   name: string
   description?: string
   list: string[]
 }
 
-interface FindAllProject {
+interface FindAllBoard {
   name?: string
   description?: string
 }
 
-interface ProjectLabel {
+interface BoardLabel {
   text: string
   color: string
 }
 
 interface AddNewLabel {
   id: string
-  label: ProjectLabel
+  label: BoardLabel
 }
 
 interface AddNewList {
@@ -47,33 +47,33 @@ if (typeof localStorage?.getItem('token') === 'string') {
   )}`
 }
 
-export const projectApi = createApi({
-  reducerPath: 'projectApi',
+export const boardApi = createApi({
+  reducerPath: 'boardApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${BASE_API_URL}/projects`,
+    baseUrl: `${BASE_API_URL}/boards`,
     prepareHeaders: (headers) => {
       headers.set('Authorization', token)
       return headers
     }
   }),
   endpoints: (builder) => ({
-    createProject: builder.mutation<IProject, CreateProject>({
+    create: builder.mutation<IBoard, CreateBoard>({
       query: (body) => ({ url: '', method: 'POST', body })
     }),
-    findOneProject: builder.query<IProject, string>({
+    findOne: builder.query<IBoard, string>({
       query: (id) => ({ url: `/${id}`, method: 'GET' })
     }),
-    findAllProject: builder.query<IProject[], FindAllProject | undefined>({
+    findAll: builder.query<IBoard[], FindAllBoard | undefined>({
       query: (params) => ({ url: '', method: 'GET', params })
     }),
-    addNewLabel: builder.mutation<IProject, AddNewLabel>({
+    addNewLabel: builder.mutation<IBoard, AddNewLabel>({
       query: ({ id, label }) => ({
         url: `/${id}/label`,
         method: 'POST',
         body: label
       })
     }),
-    addNewList: builder.mutation<IProject, AddNewList>({
+    addNewList: builder.mutation<IBoard, AddNewList>({
       query: ({ id, list }) => ({
         url: `/${id}/list`,
         method: 'POST',
@@ -84,9 +84,9 @@ export const projectApi = createApi({
 })
 
 export const {
-  useFindOneProjectQuery,
-  useFindAllProjectQuery,
-  useCreateProjectMutation,
+  useFindOneQuery,
+  useFindAllQuery,
+  useCreateMutation,
   useAddNewLabelMutation,
   useAddNewListMutation
-} = projectApi
+} = boardApi

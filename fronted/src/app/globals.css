@@ -1,4 +1,11 @@
 :root {
+  --menu-background-color: #fbfafd;
+
+  --done-color: #c3e6cd;
+  --failed-color: #fdd4cd;
+  --in-progress-color: #cbe2f9;
+  --pending-color: #ececef;
+
   --white-color: #ffffff;
   --error-color: #cd1818;
   --primary-color: #1565c0;

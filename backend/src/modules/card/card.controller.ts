@@ -21,7 +21,7 @@ export class CardController {
 
   @ApiBearerAuth()
   @ApiResponse({ status: 200, type: [CardFindOneResponseDto] })
-  @ApiOperation({ description: 'Find all card by project' })
+  @ApiOperation({ description: 'Find all card by board' })
   @Get()
   find(@Req() request: any): Promise<ICard[]> {
     const owner = request.user.id;

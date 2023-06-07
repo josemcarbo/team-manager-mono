@@ -7,9 +7,9 @@ import {
   IsString,
 } from 'class-validator';
 import { Types } from 'mongoose';
-import { IProjectLabel } from './project.interface';
+import { IBoardLabel } from './board.interface';
 
-export class ProjectFindOneRequestDto {
+export class BoardFindOneRequestDto {
   @ApiProperty({
     format: 'mongoid',
   })
@@ -18,7 +18,7 @@ export class ProjectFindOneRequestDto {
   id: string;
 }
 
-export class ProjectFindOneResponseDto {
+export class BoardFindOneResponseDto {
   @ApiProperty({
     format: 'mongoid',
   })
@@ -34,7 +34,7 @@ export class ProjectFindOneResponseDto {
   list: string[];
 
   @ApiProperty()
-  labels: IProjectLabel[];
+  labels: IBoardLabel[];
 
   @ApiProperty({
     format: 'mongoid',
@@ -53,7 +53,7 @@ export class ProjectFindOneResponseDto {
   updatedAt: Date;
 }
 
-export class ProjectCreateRequestDto {
+export class BoardCreateRequestDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
@@ -72,10 +72,10 @@ export class ProjectCreateRequestDto {
   @ApiProperty()
   @IsArray()
   @IsOptional()
-  labels?: IProjectLabel[];
+  labels?: IBoardLabel[];
 }
 
-export class ProjectCreateLabelRequestDto {
+export class BoardCreateLabelRequestDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
@@ -87,7 +87,7 @@ export class ProjectCreateLabelRequestDto {
   color: string;
 }
 
-export class ProjectCreateListRequestDto {
+export class BoardCreateListRequestDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()

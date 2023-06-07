@@ -20,7 +20,7 @@
   height: 20px;
 }
 
-.project_selected {
+.selected {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -31,13 +31,13 @@
   gap: 5px;
 }
 
-.project_selected > span,
-.project_selected > .icon {
+.selected > span,
+.selected > .icon {
   font-size: var(--text-large);
   color: var(--white-color);
 }
 
-.project_available_container {
+.available_container {
   width: 100%;
   border: 0;
   background: unset;
@@ -50,7 +50,7 @@
   gap: 15px;
 }
 
-.project_available_container > button {
+.available_container > button {
   width: 100%;
   border: 0;
   background: unset;
@@ -59,7 +59,7 @@
   text-align: left;
 }
 
-.project_available_container > button > span {
+.available_container > button > span {
   font-size: var(--text-medium);
 }
 

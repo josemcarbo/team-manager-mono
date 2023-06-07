@@ -1,23 +1,23 @@
 import { ObjectId } from 'mongoose';
 
-export interface IProjectLabel {
+export interface IBoardLabel {
   text: string;
   color: string;
 }
 
-export interface IProject {
+export interface IBoard {
   id?: ObjectId;
   name: string;
   description?: string;
   list?: string[];
-  labels?: IProjectLabel[];
+  labels?: IBoardLabel[];
   owner: ObjectId;
   members?: ObjectId[];
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export interface IProjectFindParam {
+export interface IBoardFindParam {
   name?: string;
   description?: string;
   owner?: ObjectId;

@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import { useCreateProjectMutation } from '@/app/core/redux/services/projectApi'
+import { useCreateMutation } from '@/app/core/redux/services/boardApi'
 import {
   refreshOne,
   createViewOpen
-} from '@/app/core/redux/features/projectSlice'
+} from '@/app/core/redux/features/boardSlice'
 import { useAppDispatch, useAppSelector } from '@/app/core/redux/hooks'
 import { BOARD_LIST } from '@/app/core/constants'
 
 interface UseCreate {
-  project: any
+  board: any
   isCreateViewOpen: boolean
   onSubmit: (event: any) => Promise<void>
   handleCloseView: () => void
@@ -24,12 +24,12 @@ const defaultValues = {
 }
 
 export default function useCreate (): UseCreate {
-  const [project, setProject] = useState(defaultValues)
+  const [board, setBoard] = useState(defaultValues)
   const isCreateViewOpen = useAppSelector(
-    (state) => state.project.createViewOpen
+    (state) => state.board.createViewOpen
   )
-  const [createProject, { isSuccess, data, error, isError }] =
-    useCreateProjectMutation()
+  const [create, { isSuccess, data, error, isError }] =
+  useCreateMutation()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function useCreate (): UseCreate {
 
   const onSubmit = async (event: any): Promise<void> => {
     event.preventDefault()
-    await createProject(project)
+    await create(board)
   }
 
   const handleCloseView = (): void => {
@@ -54,15 +54,15 @@ export default function useCreate (): UseCreate {
   }
 
   const onChangeNameValue = (event: any): void => {
-    setProject({ ...project, name: event.target.value })
+    setBoard({ ...board, name: event.target.value })
   }
 
   const onChangeDescriptionValue = (event: any): void => {
-    setProject({ ...project, description: event.target.value })
+    setBoard({ ...board, description: event.target.value })
   }
 
   return {
-    project,
+    board,
     onSubmit,
     isCreateViewOpen,
     handleCloseView,

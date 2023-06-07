@@ -116,7 +116,7 @@ export class CardCreateRequestDto {
   points: number;
 
   @IsMongoId()
-  project: ObjectId;
+  board: ObjectId;
 
   @ApiProperty()
   owner: ObjectId;

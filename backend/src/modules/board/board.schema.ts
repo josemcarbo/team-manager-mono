@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Schema as MongooseSchema, Types } from 'mongoose';
-import { IProjectLabel } from './project.interface';
+import { IBoardLabel } from './board.interface';
 
-export type ProjectDocument = HydratedDocument<Project>;
+export type BoardDocument = HydratedDocument<Board>;
 
 @Schema({ timestamps: true })
-export class Project {
+export class Board {
   @Prop({ required: true })
   name: string;
 
@@ -16,7 +16,7 @@ export class Project {
   list?: string[];
 
   @Prop({ required: false, default: [] })
-  labels?: IProjectLabel[];
+  labels?: IBoardLabel[];
 
   @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: 'Users' })
   owner: Types.ObjectId;
@@ -25,4 +25,4 @@ export class Project {
   members?: Types.ObjectId[];
 }
 
-export const ProjectSchema = SchemaFactory.createForClass(Project);
+export const BoardSchema = SchemaFactory.createForClass(Board);

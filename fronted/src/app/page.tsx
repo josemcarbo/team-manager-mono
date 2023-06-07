@@ -5,14 +5,14 @@ import { skipToken } from '@reduxjs/toolkit/query/react'
 import useSessionStorage from '@/app/core/hooks/useLocalStorage'
 import React, { useEffect } from 'react'
 import { useGetUserQuery } from '@/app/core/redux/services/userApi'
-import { useFindAllProjectQuery } from '@/app/core/redux/services/projectApi'
+import { useFindAllQuery } from '@/app/core/redux/services/boardApi'
 import { useAppDispatch } from '@/app/core/redux/hooks'
 import { addUser } from '@/app/core/redux/features/userSlice'
-import { refreshList } from '@/app/core/redux/features/projectSlice'
+import { refreshList } from '@/app/core/redux/features/boardSlice'
 import Loading from '../components/loading/loading'
-import ProjectCreate from '@/components/project/create/page'
+import BoardCreate from '@/components/board/create/page'
 import styles from './page.module.css'
-import Board from '@/components/board/board'
+import Board from '@/components/board_/board'
 
 export default function HomePage (): React.ReactElement {
   const router = useRouter()
@@ -28,12 +28,12 @@ export default function HomePage (): React.ReactElement {
   } = useGetUserQuery(token ?? skipToken)
 
   const {
-    data: projects,
-    isSuccess: projectIsSuccess,
-    isError: projectIsError,
-    error: projectError,
-    isLoading: projectIsLoading
-  } = useFindAllProjectQuery(token ?? skipToken)
+    data: boards,
+    isSuccess: boardIsSuccess,
+    isError: boardIsError,
+    error: boardError,
+    isLoading: boardIsLoading
+  } = useFindAllQuery(token === null ? skipToken : undefined)
 
   useEffect(() => {
     token === null && router.push('/login')
@@ -55,27 +55,27 @@ export default function HomePage (): React.ReactElement {
   }, [userIsSuccess, user, userIsError, userError])
 
   useEffect(() => {
-    if (projectIsSuccess && projects !== null) {
-      dispatch(refreshList(projects))
+    if (boardIsSuccess && boards !== null) {
+      dispatch(refreshList(boards))
     }
 
-    if (projectIsError && projectError !== null) {
-      const { status, data } = projectError as any
+    if (boardIsError && boardError !== null) {
+      const { status, data } = boardError as any
       toast.error(
         `${status as string}: ${
           (data?.message ?? 'ERR_CONNECTION_REFUSED') as string
         }`
       )
     }
-  }, [projects, projectIsSuccess, projectIsError, projectError])
+  }, [boards, boardIsSuccess, boardIsError, boardError])
 
   return (
     <>
-      {(userIsLoading || projectIsLoading) && <Loading />}
+      {(userIsLoading || boardIsLoading) && <Loading />}
       <section className={styles.container}>
         <Board />
       </section>
-      <ProjectCreate />
+      <BoardCreate />
     </>
   )
 }

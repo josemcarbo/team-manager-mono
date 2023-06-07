@@ -2,25 +2,25 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import { authApi } from './services/authAApi'
 import user from './features/userSlice'
-import project from './features/projectSlice'
+import board from './features/boardSlice'
 import { userApi } from './services/userApi'
-import { projectApi } from './services/projectApi'
+import { boardApi } from './services/boardApi'
 import { cardApi } from './services/cardApi'
 
 export const store = configureStore({
   reducer: {
     user,
-    project,
+    board,
     [authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
-    [projectApi.reducerPath]: projectApi.reducer,
+    [boardApi.reducerPath]: boardApi.reducer,
     [cardApi.reducerPath]: cardApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({})
       .concat([authApi.middleware])
       .concat([userApi.middleware])
-      .concat([projectApi.middleware])
+      .concat([boardApi.middleware])
 })
 
 setupListeners(store.dispatch)
