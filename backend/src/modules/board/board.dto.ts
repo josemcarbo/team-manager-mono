@@ -59,7 +59,7 @@ export class BoardCreateRequestDto {
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
   description?: string;
@@ -69,7 +69,7 @@ export class BoardCreateRequestDto {
   @IsOptional()
   list?: string[];
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsArray()
   @IsOptional()
   labels?: IBoardLabel[];

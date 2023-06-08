@@ -13,8 +13,8 @@ export interface ICard {
   startDate?: Date;
   assignee?: string;
   reviewer?: string;
-  points: number;
-  owner: string;
+  points?: number;
+  owner?: string;
   board: string;
 }
 

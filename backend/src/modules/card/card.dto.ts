@@ -4,6 +4,7 @@ import {
   IsDate,
   IsMongoId,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
@@ -73,7 +74,7 @@ export class CardCreateRequestDto {
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
   description?: string;
@@ -82,23 +83,24 @@ export class CardCreateRequestDto {
   @IsString()
   status: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsArray()
   @IsOptional()
   labels?: ICardLabel[];
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsDate()
   @IsOptional()
   dueDate?: Date;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsDate()
   @IsOptional()
   startDate?: Date;
 
   @ApiProperty({
     format: 'mongoid',
+    required: false,
   })
   @IsMongoId()
   @IsOptional()
@@ -106,19 +108,22 @@ export class CardCreateRequestDto {
 
   @ApiProperty({
     format: 'mongoid',
+    required: false,
   })
   @IsMongoId()
   @IsOptional()
   reviewer?: string;
 
-  @ApiProperty()
-  points: number;
+  @ApiProperty({ required: false })
+  @IsNumber()
+  points?: number;
 
+  @ApiProperty({
+    format: 'mongoid',
+    required: true,
+  })
   @IsMongoId()
   board: string;
-
-  @ApiProperty()
-  owner: string;
 }
 
 export class CardCreateLabelRequestDto {
@@ -134,7 +139,7 @@ export class CardCreateLabelRequestDto {
 }
 
 export class CardFindAllParameters {
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsString()
   @IsNotEmpty()
   @IsOptional()
@@ -142,6 +147,7 @@ export class CardFindAllParameters {
 
   @ApiProperty({
     format: 'mongoid',
+    required: false,
   })
   @IsMongoId()
   @IsOptional()
@@ -149,6 +155,7 @@ export class CardFindAllParameters {
 
   @ApiProperty({
     format: 'mongoid',
+    required: false,
   })
   @IsMongoId()
   @IsOptional()
@@ -156,6 +163,7 @@ export class CardFindAllParameters {
 
   @ApiProperty({
     format: 'mongoid',
+    required: false,
   })
   @IsMongoId()
   @IsOptional()
