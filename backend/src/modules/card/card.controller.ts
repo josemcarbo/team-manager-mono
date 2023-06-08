@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Query, Param, Post, Req } from '@nestjs/common';
 import {
   CardCreateLabelRequestDto,
   CardCreateRequestDto,
+  CardFindAllParameters,
   CardFindOneRequestDto,
   CardFindOneResponseDto,
 } from './card.dto';
@@ -23,9 +24,12 @@ export class CardController {
   @ApiResponse({ status: 200, type: [CardFindOneResponseDto] })
   @ApiOperation({ description: 'Find all card by board' })
   @Get()
-  find(@Req() request: any): Promise<ICard[]> {
+  find(
+    @Query() params: CardFindAllParameters,
+    @Req() request: any,
+  ): Promise<ICard[]> {
     const owner = request.user.id;
-    return this.cardService.find({ owner });
+    return this.cardService.find({ ...params, owner });
   }
 
   @ApiBearerAuth()

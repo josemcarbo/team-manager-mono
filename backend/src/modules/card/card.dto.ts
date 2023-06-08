@@ -8,7 +8,6 @@ import {
   IsString,
 } from 'class-validator';
 import { ICardLabel } from './card.interface';
-import { ObjectId } from 'mongoose';
 
 export class CardFindOneRequestDto {
   @ApiProperty({
@@ -103,23 +102,23 @@ export class CardCreateRequestDto {
   })
   @IsMongoId()
   @IsOptional()
-  assignee?: ObjectId;
+  assignee?: string;
 
   @ApiProperty({
     format: 'mongoid',
   })
   @IsMongoId()
   @IsOptional()
-  reviewer?: ObjectId;
+  reviewer?: string;
 
   @ApiProperty()
   points: number;
 
   @IsMongoId()
-  board: ObjectId;
+  board: string;
 
   @ApiProperty()
-  owner: ObjectId;
+  owner: string;
 }
 
 export class CardCreateLabelRequestDto {
@@ -132,4 +131,33 @@ export class CardCreateLabelRequestDto {
   @IsString()
   @IsNotEmpty()
   color: string;
+}
+
+export class CardFindAllParameters {
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  @IsOptional()
+  status?: string;
+
+  @ApiProperty({
+    format: 'mongoid',
+  })
+  @IsMongoId()
+  @IsOptional()
+  assignees?: string;
+
+  @ApiProperty({
+    format: 'mongoid',
+  })
+  @IsMongoId()
+  @IsOptional()
+  reviewer?: string;
+
+  @ApiProperty({
+    format: 'mongoid',
+  })
+  @IsMongoId()
+  @IsOptional()
+  board?: string;
 }

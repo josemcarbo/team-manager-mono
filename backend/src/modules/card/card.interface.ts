@@ -1,27 +1,27 @@
-import { ObjectId } from 'mongoose';
-
 export interface ICardLabel {
   text: string;
   color: string;
 }
 
 export interface ICard {
-  id?: ObjectId;
+  id?: string;
   name: string;
   description?: string;
   status: string;
   labels?: ICardLabel[];
   dueDate?: Date;
   startDate?: Date;
-  assignee?: ObjectId;
-  reviewer?: ObjectId;
+  assignee?: string;
+  reviewer?: string;
   points: number;
-  owner: ObjectId;
+  owner: string;
+  board: string;
 }
 
 export interface ICardFindParam {
   status?: string;
-  assignees?: ObjectId;
-  reviewer?: ObjectId;
-  owner?: ObjectId;
+  assignees?: string;
+  reviewer?: string;
+  owner?: string;
+  board?: string;
 }

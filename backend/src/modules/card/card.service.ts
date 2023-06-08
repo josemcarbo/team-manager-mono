@@ -1,10 +1,18 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { ICard, ICardFindParam, ICardLabel } from './card.interface';
 import { CardRepository } from './card.repository';
+import { BoardService } from '../board/board.service';
 
 @Injectable()
 export class CardService {
-  constructor(private readonly cardRepository: CardRepository) {}
+  constructor(
+    private readonly boardService: BoardService,
+    private readonly cardRepository: CardRepository,
+  ) {}
 
   async find(params: ICardFindParam): Promise<ICard[]> {
     return this.cardRepository.find(params);
@@ -17,6 +25,10 @@ export class CardService {
   }
 
   async create(card: ICard): Promise<ICard> {
+    await this.boardService.findOne(card.board).catch(() => {
+      throw new BadRequestException('Board not found');
+    });
+
     return this.cardRepository.create(card);
   }
 

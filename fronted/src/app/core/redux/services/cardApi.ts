@@ -18,13 +18,14 @@ export interface ICard {
   reviewer?: string
   points: number
   owner: string
+  board: string
 }
 
 export interface ICardFindParam {
   status?: string
   assignees?: string
   reviewer?: string
-  owner?: string
+  board?: string
 }
 
 let token = ''

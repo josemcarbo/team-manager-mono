@@ -8,11 +8,11 @@ import { useGetUserQuery } from '@/app/core/redux/services/userApi'
 import { useFindAllQuery } from '@/app/core/redux/services/boardApi'
 import { useAppDispatch } from '@/app/core/redux/hooks'
 import { addUser } from '@/app/core/redux/features/userSlice'
-import { refreshList } from '@/app/core/redux/features/boardSlice'
+import { refreshList } from '../app/core/redux/features/boardSlice'
 import Loading from '../components/loading/loading'
-import BoardCreate from '@/components/board/create/page'
+import BoardCreate from '../components/board/create/page'
 import styles from './page.module.css'
-import Board from '@/components/board_/board'
+import Board from '@/components/board/list/board'
 
 export default function HomePage (): React.ReactElement {
   const router = useRouter()
@@ -25,7 +25,7 @@ export default function HomePage (): React.ReactElement {
     isError: userIsError,
     error: userError,
     isLoading: userIsLoading
-  } = useGetUserQuery(token ?? skipToken)
+  } = useGetUserQuery(token === null ? skipToken : undefined)
 
   const {
     data: boards,
