@@ -116,6 +116,7 @@ export class CardCreateRequestDto {
 
   @ApiProperty({ required: false })
   @IsNumber()
+  @IsOptional()
   points?: number;
 
   @ApiProperty({
