@@ -14,7 +14,8 @@
   --disabled-color: #b0bec5;
 
   --text-primary-color: #212121;
-  --text-secondary-color: #bdbdbd;
+  --text-secondary-color: #616161;
+  --text-tertiary-color: #818181;
 
   --window-background-color: #fbfaf9;
 
@@ -28,8 +29,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 6px;
+  width: 5px;
+  height: 3px;
 }
 
 ::-webkit-scrollbar-track {
@@ -38,7 +39,7 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--primary-color);
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -55,6 +56,7 @@ body {
   height: 100vh;
   margin: 0px;
   padding: 0px;
+  background-color: #fbfaf9;
 }
 
 .Toastify__toast {

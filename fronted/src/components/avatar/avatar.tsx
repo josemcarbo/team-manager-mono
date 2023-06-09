@@ -17,7 +17,7 @@ export default function AvatarComponent (props: Props): React.ReactElement {
   }
 
   return (
-        <div className={classNames(styles.container, styles[props.size])}>
+        <div className={classNames(styles.avatar_container, styles[props.size])}>
             <span>{toShortAvatarName(props.avatar)}</span>
         </div>
   )

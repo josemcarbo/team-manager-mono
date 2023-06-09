@@ -1,12 +1,12 @@
 .container {
   box-sizing: border-box;
-  width: 250px;
-  padding: 10px 20px;
+  width: 200px;
+  padding: 5px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
+  gap: 10px;
 }
 
 .colors {
@@ -15,13 +15,12 @@
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
   align-items: center;
-  gap: 10px;
 }
 
 .colors > button {
   width: 100%;
   height: 25px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   border: 0;
   padding: 0 8px;
   cursor: pointer;
@@ -40,16 +39,14 @@
   box-sizing: border-box;
   width: 100%;
   background-color: var(--window-background-color);
-  padding: 20px 30px;
 }
 
 .preview {
   font-size: var(--text-large);
   box-sizing: border-box;
   width: 100%;
-  min-height: 38px;
   overflow: hidden;
-  padding: 10px 10px;
+  padding: 5px 10px;
   display: inline-block;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -70,13 +67,14 @@
 
 .button {
   width: 100%;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 4px;
   border: 0;
   background-color: var(--primary-color);
   color: var(--white-color);
-  font-size: var(--text-large);
+  font-size: var(--text-medium);
   cursor: pointer;
+  font-family: "Inconsolata", monospace;
 }
 
 .button[disabled] {

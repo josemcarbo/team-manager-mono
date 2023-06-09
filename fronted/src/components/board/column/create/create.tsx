@@ -21,10 +21,10 @@ export default function ColumnCreateComponent (): React.ReactElement {
   return (
     <>
       {board !== null && (
-        <article className={styles.container}>
+        <article className={styles.board_column_create_container}>
           {!showEditMode
             ? (
-            <div className={styles.header} onClick={handleShowAddList}>
+            <div className={styles.board_column_create_header} onClick={handleShowAddList}>
               <HiOutlinePlusSmall className={styles.icon} />
               <span>Add list</span>
             </div>

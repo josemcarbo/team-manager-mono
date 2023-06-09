@@ -18,7 +18,7 @@ export default function CreateLabelComponent (): React.ReactElement {
     <section className={styles.container}>
       <div className={styles.preview_container}>
         <div style={{ backgroundColor: color }} className={styles.preview}>
-          {title}
+          <span>{title}</span>
         </div>
       </div>
       <div className={styles.input_container}>

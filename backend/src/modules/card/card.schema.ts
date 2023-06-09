@@ -9,7 +9,7 @@ export class Card {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: false })
+  @Prop({ required: false, default: '' })
   description?: string;
 
   @Prop({ required: true })

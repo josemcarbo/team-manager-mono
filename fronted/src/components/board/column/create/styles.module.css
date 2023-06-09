@@ -1,4 +1,4 @@
-.container {
+.board_column_create_container {
     box-sizing: border-box;
     max-height: 95vh;
     flex-direction: column;
@@ -6,7 +6,7 @@
     align-items: flex-start;
   }
   
-  .header {
+  .board_column_create_header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,13 +14,13 @@
     cursor: pointer;
   }
 
-  .header > span {
+  .board_column_create_header > span {
     font-weight: 500;
     font-size: var(--text-medium);
     color: var(--text-color);
   }
 
-  .header > .icon {
+  .board_column_create_header > .icon {
     width: 12px;
     height: 12px;
   }
