@@ -1,0 +1,104 @@
+.label_container {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 3px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.colors {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  justify-items: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.colors > button {
+  width: 100%;
+  height: 20px;
+  border: 0;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.colors > button:hover,
+.colors > button.selected {
+  transform: scale(1.25);
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.input,
+.input:active,
+.input:focus,
+.input:focus-within,
+.input:visited,
+.input:target,
+.input:hover {
+  padding: 5px 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 0 !important;
+  border-radius: 4px;
+  font-family: "Inconsolata", monospace;
+  color: var(--text-primary-color);
+  text-align: center;
+}
+
+.input_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.label_actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.label_actions > .icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  color: var(--text-tertiary-color);
+}
+
+.label_actions > .icon:hover {
+  transform: scale(1.1);
+  color: var(--text-primary-color);
+}
+
+.labels_container {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.labels_container > span {
+  padding: 2px 5px;
+  border-radius: 8px;
+  font-family: "Inconsolata", monospace;
+  font-size: var(--text-small);
+  color: var(--text-primary-color);
+  cursor: pointer;
+}
+
+.labels_container > span.selected {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}

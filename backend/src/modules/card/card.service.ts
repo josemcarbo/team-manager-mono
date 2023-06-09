@@ -32,13 +32,28 @@ export class CardService {
     return this.cardRepository.create(card);
   }
 
-  async addNewLabel(id: string, label: ICardLabel): Promise<ICard> {
-    const card = await this.cardRepository.addNewLabel(id, label);
+  async addNewLabel(id: string, labels: ICardLabel[]): Promise<ICard> {
+    const card = await this.findOne(id);
+
     if (!card) throw new NotFoundException('Card not found');
-    return card;
+
+    const board = await this.boardService.findOne(card.board).catch(() => {
+      throw new BadRequestException('Board not found');
+    });
+
+    const [cardUpdated] = await Promise.all([
+      this.cardRepository.addNewLabel(id, labels),
+      this.boardService.addNewLabel(board.id, labels),
+    ]);
+
+    return cardUpdated;
   }
 
   async delete(id: string): Promise<ICard> {
     return this.cardRepository.delete(id);
+  }
+
+  async removeLabel(id: string, labels: ICardLabel[]): Promise<ICard> {
+    return this.cardRepository.removeLabel(id, labels);
   }
 }

@@ -19,6 +19,8 @@
 
   --window-background-color: #fbfaf9;
 
+  --background-color: #fbfaf9;
+
   --text-small: 12px;
   --text-medium: 14px;
   --text-large: 16px;
@@ -56,7 +58,7 @@ body {
   height: 100vh;
   margin: 0px;
   padding: 0px;
-  background-color: #fbfaf9;
+  background-color: var(--background-color);
 }
 
 .Toastify__toast {
@@ -238,4 +240,14 @@ template {
 
 [hidden] {
   display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
 }

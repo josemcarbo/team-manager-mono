@@ -32,10 +32,10 @@ export class BoardRepository {
     return this.db.updateOne({ _id: id }, board).lean();
   }
 
-  async addNewLabel(id: string, label: IBoardLabel): Promise<IBoard> {
+  async addNewLabel(id: string, labels: IBoardLabel[]): Promise<IBoard> {
     await this.update(id, {
-      $push: {
-        labels: label,
+      $addToSet: {
+        labels: { $each: labels },
       },
     });
     return this.findOne(id);

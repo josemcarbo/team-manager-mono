@@ -31,10 +31,19 @@ export class CardRepository {
     return this.db.updateOne({ _id: id }, card).lean();
   }
 
-  async addNewLabel(id: string, label: ICardLabel): Promise<ICard> {
+  async addNewLabel(id: string, labels: ICardLabel[]): Promise<ICard> {
     await this.update(id, {
-      $push: {
-        labels: label,
+      $addToSet: {
+        labels: { $each: labels },
+      },
+    });
+    return this.findOne(id);
+  }
+
+  async removeLabel(id: string, labels: ICardLabel[]): Promise<ICard> {
+    await this.update(id, {
+      $pull: {
+        labels: { $in: labels },
       },
     });
     return this.findOne(id);

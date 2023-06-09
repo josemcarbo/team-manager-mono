@@ -20,8 +20,8 @@ export class BoardService {
     return this.boardRepository.create(board);
   }
 
-  async addNewLabel(id: string, label: IBoardLabel): Promise<IBoard> {
-    const board = await this.boardRepository.addNewLabel(id, label);
+  async addNewLabel(id: string, labels: IBoardLabel[]): Promise<IBoard> {
+    const board = await this.boardRepository.addNewLabel(id, labels);
     if (!board) throw new NotFoundException('Board not found');
     return board;
   }

@@ -24,14 +24,9 @@ interface FindAllBoard {
   description?: string
 }
 
-interface BoardLabel {
+export interface BoardLabel {
   text: string
   color: string
-}
-
-interface AddNewLabel {
-  id: string
-  label: BoardLabel
 }
 
 interface AddNewList {
@@ -66,13 +61,6 @@ export const boardApi = createApi({
     findAll: builder.query<IBoard[], FindAllBoard | undefined>({
       query: (params) => ({ url: '', method: 'GET', params })
     }),
-    addNewLabel: builder.mutation<IBoard, AddNewLabel>({
-      query: ({ id, label }) => ({
-        url: `/${id}/label`,
-        method: 'POST',
-        body: label
-      })
-    }),
     addNewList: builder.mutation<IBoard, AddNewList>({
       query: ({ id, list }) => ({
         url: `/${id}/list`,
@@ -87,6 +75,5 @@ export const {
   useFindOneQuery,
   useFindAllQuery,
   useCreateMutation,
-  useAddNewLabelMutation,
   useAddNewListMutation
 } = boardApi

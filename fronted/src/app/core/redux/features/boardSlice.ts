@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import { type IBoard } from '../services/boardApi'
+import { type BoardLabel, type IBoard } from '../services/boardApi'
 
 interface BoardState {
   boards: IBoard[]
@@ -45,11 +45,31 @@ export const board = createSlice({
     },
     selectBoard: (state, action: PayloadAction<IBoard>) => {
       state.board = action.payload
+    },
+    refreshLabelList: (state, action: PayloadAction<BoardLabel[]>) => {
+      if (state.board !== null) {
+        state.board = {
+          ...state.board,
+          labels: [...state.board?.labels, ...action.payload]
+        }
+
+        state.boards.map((board) => {
+          if (board.id === state?.board?.id) {
+            board.labels = state.board.labels
+          }
+          return board
+        })
+      }
     }
   }
 })
 
-export const { refreshOne, refreshList, selectBoard, createViewOpen } =
-  board.actions
+export const {
+  refreshOne,
+  refreshList,
+  selectBoard,
+  createViewOpen,
+  refreshLabelList
+} = board.actions
 
 export default board.reducer

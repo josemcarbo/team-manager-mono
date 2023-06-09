@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 import { type ICardLabel, type ICard, useRemoveMutation } from '@/app/core/redux/services/cardApi'
 import { useEffect } from 'react'
 import { useAppDispatch } from '@/app/core/redux/hooks'
-import { removeOne } from '@/app/core/redux/features/cardSlice'
+import { detailViewOpen, selectCard, removeOne } from '@/app/core/redux/features/cardSlice'
 
 interface Props {
   card: ICard
@@ -16,6 +16,7 @@ interface IUseItem {
   startDate: string | undefined
   dueDate: string | undefined
   handleRemove: () => Promise<void>
+  handleDetailClick: () => void
 }
 
 export default function useItem ({ card }: Props): IUseItem {
@@ -38,6 +39,11 @@ export default function useItem ({ card }: Props): IUseItem {
     card !== undefined && await remove(card.id as string)
   }
 
+  const handleDetailClick = (): void => {
+    dispatch(selectCard(card))
+    setTimeout(() => dispatch(detailViewOpen(true)), 50)
+  }
+
   const transformer = (card: ICard): IUseItem => {
     return {
       description: card.description,
@@ -45,7 +51,8 @@ export default function useItem ({ card }: Props): IUseItem {
       labels: card.labels,
       startDate: card.startDate !== undefined ? moment(card.startDate).fromNow() : undefined,
       dueDate: card.dueDate !== undefined ? moment(card.dueDate).fromNow() : undefined,
-      handleRemove
+      handleRemove,
+      handleDetailClick
     }
   }
 

@@ -1,18 +1,16 @@
-import { ObjectId } from 'mongoose';
-
 export interface IBoardLabel {
   text: string;
   color: string;
 }
 
 export interface IBoard {
-  id?: ObjectId;
+  id?: string;
   name: string;
   description?: string;
   list?: string[];
   labels?: IBoardLabel[];
-  owner: ObjectId;
-  members?: ObjectId[];
+  owner: string;
+  members?: string[];
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -20,5 +18,5 @@ export interface IBoard {
 export interface IBoardFindParam {
   name?: string;
   description?: string;
-  owner?: ObjectId;
+  owner?: string;
 }

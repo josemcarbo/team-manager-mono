@@ -31,3 +31,11 @@ export const COLOR_LIST = [
 ]
 
 export const BOARD_LIST = ['TO DO', 'IN PROGRESS', 'REJECTED', 'DONE']
+
+export const LIST_COLOR = {
+  'TO DO': '#ececef',
+  'IN PROGRESS': '#cbe2f9',
+  DONE: '#c3e6cd',
+  REJECTED: '#fdd4cd',
+  DEFAULT: ''
+}

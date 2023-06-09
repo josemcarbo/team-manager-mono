@@ -12,19 +12,10 @@ interface Props {
   title: string
 }
 
-const LIST_COLOR = {
-  'TO DO': '#ececef',
-  'IN PROGRESS': '#cbe2f9',
-  DONE: '#c3e6cd',
-  REJECTED: '#fdd4cd',
-  DEFAULT: ''
-}
-
 export default function ColumnViewComponent ({
   title
 }: Props): React.ReactElement {
-  const { cards } = useColumn({ title })
-  const bgColor: string = LIST_COLOR[title as keyof typeof LIST_COLOR]
+  const { cards, bgColor } = useColumn({ title })
 
   return (
     <article className={styles.container}>

@@ -7,6 +7,7 @@ import {
   Post,
   Req,
   Delete,
+  Patch,
 } from '@nestjs/common';
 import {
   CardCreateLabelRequestDto,
@@ -66,10 +67,10 @@ export class CardController {
   @ApiOperation({ description: 'Add a card label' })
   @Post('/:id/label')
   createLabel(
-    @Body() label: CardCreateLabelRequestDto,
+    @Body() labels: CardCreateLabelRequestDto[],
     @Param() { id }: CardFindOneRequestDto,
   ): Promise<ICard> {
-    return this.cardService.addNewLabel(id, label);
+    return this.cardService.addNewLabel(id, labels);
   }
 
   @ApiBearerAuth()
@@ -78,5 +79,16 @@ export class CardController {
   @Delete('/:id')
   delete(@Param() { id }: CardFindOneRequestDto): Promise<ICard> {
     return this.cardService.delete(id);
+  }
+
+  @ApiBearerAuth()
+  @ApiResponse({ status: 200, type: CardFindOneResponseDto })
+  @ApiOperation({ description: 'Remove a card label' })
+  @Patch('/:id/label')
+  deleteLabel(
+    @Param() { id }: CardFindOneRequestDto,
+    @Body() labels: CardCreateLabelRequestDto[],
+  ): Promise<ICard> {
+    return this.cardService.removeLabel(id, labels);
   }
 }

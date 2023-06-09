@@ -11,7 +11,7 @@ export interface ICard {
   name: string
   description?: string
   status: string
-  labels?: ICardLabel[]
+  labels: ICardLabel[]
   dueDate?: Date
   startDate?: Date
   assignee?: string
@@ -26,6 +26,11 @@ export interface ICardFindParam {
   assignees?: string
   reviewer?: string
   board?: string
+}
+
+interface IAddNewLabel {
+  id: string
+  labels: ICardLabel[]
 }
 
 let token = ''
@@ -51,8 +56,27 @@ export const cardApi = createApi({
     }),
     remove: builder.mutation<ICard, string>({
       query: (id) => ({ url: `/${id}`, method: 'DELETE' })
+    }),
+    addNewLabel: builder.mutation<ICard, IAddNewLabel>({
+      query: ({ id, labels }) => ({
+        url: `/${id}/label`,
+        method: 'POST',
+        body: labels
+      })
+    }),
+    removeLabel: builder.mutation<ICard, IAddNewLabel>({
+      query: ({ id, labels }) => ({
+        url: `/${id}/label`,
+        method: 'PATCH',
+        body: labels
+      })
     })
   })
 })
 
-export const { useFindAllCardQuery, useRemoveMutation } = cardApi
+export const {
+  useFindAllCardQuery,
+  useRemoveMutation,
+  useAddNewLabelMutation,
+  useRemoveLabelMutation
+} = cardApi

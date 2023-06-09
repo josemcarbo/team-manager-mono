@@ -6,9 +6,8 @@
   justify-content: center;
   align-items: center;
   background-color: var(--white-color);
-  padding: 10px;
+  padding: 10px 10px 5px;
   border-radius: 4px;
-  cursor: pointer;
   gap: 5px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
   position: relative;
@@ -23,25 +22,18 @@
   gap: 5px;
 }
 
-.footer {
-  justify-content: space-between;
-}
-
-.footer > span {
-  font-size: var(--text-small);
-  color: var(--text-primary-color);
-}
-
 .header > span {
   font-size: var(--text-small);
   color: var(--text-primary-color);
   font-weight: 500;
   border-radius: 4px;
   padding: 0 5px;
+  font-family: "Inconsolata", monospace;
 }
 
 .content {
   width: 100%;
+  cursor: pointer;
 }
 
 .content > span {
@@ -56,7 +48,7 @@
   font-weight: 400;
 }
 
-.icon {
+.container > .icon {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -67,4 +59,26 @@
 
 .icon:hover {
   transform: scale(1.1);
+}
+
+.footer {
+  justify-content: space-between;
+  margin-top: 3px;
+}
+
+.footer > .time {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.footer > .time > span {
+  font-size: var(--text-small);
+  color: var(--text-primary-color);
+}
+
+.footer > .time > .icon {
+  width: 12px;
+  height: 12px;
 }

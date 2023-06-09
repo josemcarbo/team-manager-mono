@@ -4,12 +4,10 @@
 
 .show {
   display: unset;
-  transition: opacity 0.3s ease-in;
 }
 
 .hidden {
   display: none;
-  transition: opacity 0.3s ease-in;
 }
 
 .container,
