@@ -23,11 +23,14 @@ export const card = createSlice({
     },
     refreshList: (state, action: PayloadAction<ICard[]>) => {
       state.cards = action.payload
+    },
+    removeOne: (state, action: PayloadAction<ICard>) => {
+      state.cards = state.cards.filter(card => card.id !== action.payload.id)
     }
   }
 })
 
-export const { refreshList, createViewOpen } =
+export const { refreshList, createViewOpen, removeOne } =
   card.actions
 
 export default card.reducer

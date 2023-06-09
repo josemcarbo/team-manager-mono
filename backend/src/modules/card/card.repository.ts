@@ -39,4 +39,9 @@ export class CardRepository {
     });
     return this.findOne(id);
   }
+
+  async delete(id: string): Promise<ICard> {
+    const deletedCard = (await this.db.findByIdAndRemove(id)).toObject();
+    return CardTransformer.toResponse(deletedCard);
+  }
 }

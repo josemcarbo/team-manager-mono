@@ -30,4 +30,4 @@ export const COLOR_LIST = [
   '#82B3AA'
 ]
 
-export const BOARD_LIST = ['TO DO', 'In PROGRESS', 'REJECTED', 'DONE']
+export const BOARD_LIST = ['TO DO', 'IN PROGRESS', 'REJECTED', 'DONE']

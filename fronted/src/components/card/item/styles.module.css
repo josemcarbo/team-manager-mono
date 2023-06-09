@@ -33,7 +33,7 @@
 }
 
 .header > span {
-  font-size: var(--text-medium);
+  font-size: var(--text-small);
   color: var(--text-primary-color);
   font-weight: 500;
   border-radius: 4px;

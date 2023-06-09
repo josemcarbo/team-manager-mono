@@ -51,17 +51,6 @@ export class BoardController {
 
   @ApiBearerAuth()
   @ApiResponse({ status: 200, type: BoardFindOneResponseDto })
-  @ApiOperation({ description: 'Add a board label' })
-  @Post('/:id/label')
-  createLabel(
-    @Body() label: BoardCreateLabelRequestDto,
-    @Param() { id }: BoardFindOneRequestDto,
-  ): Promise<IBoard> {
-    return this.boardService.addNewLabel(id, label);
-  }
-
-  @ApiBearerAuth()
-  @ApiResponse({ status: 200, type: BoardFindOneResponseDto })
   @ApiOperation({ description: 'Add a board list' })
   @Post('/:id/list')
   createList(

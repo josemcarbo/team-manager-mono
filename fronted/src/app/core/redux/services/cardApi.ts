@@ -48,8 +48,11 @@ export const cardApi = createApi({
   endpoints: (builder) => ({
     findAllCard: builder.query<ICard[], ICardFindParam | undefined>({
       query: (params) => ({ url: '', method: 'GET', params })
+    }),
+    remove: builder.mutation<ICard, string>({
+      query: (id) => ({ url: `/${id}`, method: 'DELETE' })
     })
   })
 })
 
-export const { useFindAllCardQuery } = cardApi
+export const { useFindAllCardQuery, useRemoveMutation } = cardApi

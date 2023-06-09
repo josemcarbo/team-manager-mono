@@ -41,7 +41,6 @@ export class BoardRepository {
     return this.findOne(id);
   }
   async addNewList(id: string, item: string): Promise<IBoard> {
-    await this.update(id, { $push: { list: item } });
-    return this.findOne(id);
+    return this.db.findByIdAndUpdate(id, { $push: { list: item } });
   }
 }

@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Query, Param, Post, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Query,
+  Param,
+  Post,
+  Req,
+  Delete,
+} from '@nestjs/common';
 import {
   CardCreateLabelRequestDto,
   CardCreateRequestDto,
@@ -61,5 +70,13 @@ export class CardController {
     @Param() { id }: CardFindOneRequestDto,
   ): Promise<ICard> {
     return this.cardService.addNewLabel(id, label);
+  }
+
+  @ApiBearerAuth()
+  @ApiResponse({ status: 200, type: CardFindOneResponseDto })
+  @ApiOperation({ description: 'Remove a card' })
+  @Delete('/:id')
+  delete(@Param() { id }: CardFindOneRequestDto): Promise<ICard> {
+    return this.cardService.delete(id);
   }
 }

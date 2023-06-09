@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import React from 'react'
 import classNames from 'classnames'
 import { type ICardLabel, type ICard } from '@/app/core/redux/services/cardApi'
@@ -10,10 +11,10 @@ interface Props {
   card: ICard
 }
 export default function CardItemComponent ({ card }: Props): React.ReactElement {
-  const { name, labels, startDate, dueDate } = useItem({ card })
+  const { name, labels, startDate, dueDate, handleRemove } = useItem({ card })
   return (
     <article className={styles.container}>
-      <HiOutlineXMark className={styles.icon}/>
+      <HiOutlineXMark className={styles.icon} onClick={handleRemove}/>
       <header className={styles.header}>
         {labels?.map((label: ICardLabel, i) => (
           <span style={{ backgroundColor: label.color }} key={i}>

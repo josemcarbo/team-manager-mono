@@ -37,4 +37,8 @@ export class CardService {
     if (!card) throw new NotFoundException('Card not found');
     return card;
   }
+
+  async delete(id: string): Promise<ICard> {
+    return this.cardRepository.delete(id);
+  }
 }

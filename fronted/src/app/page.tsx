@@ -13,7 +13,6 @@ import Loading from '../components/loading/loading'
 import BoardCreate from '../components/board/create/page'
 import styles from './page.module.css'
 import Board from '@/components/board/list/board'
-import CreateLabelComponent from '@/components/board/label/create/create'
 
 export default function HomePage (): React.ReactElement {
   const router = useRouter()
@@ -77,7 +76,6 @@ export default function HomePage (): React.ReactElement {
         <Board />
       </section>
       <BoardCreate />
-      <CreateLabelComponent/>
     </>
   )
 }
