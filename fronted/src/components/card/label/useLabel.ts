@@ -24,18 +24,25 @@ interface IUseLabel {
   handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleCreateLabel: () => Promise<void>
   handleSelectLabel: (label: ICardLabel) => void
+  isLabelSelected: (label: ICardLabel) => boolean
 }
 
 export default function useCreateLabel (): IUseLabel {
   const [color, setColor] = useState<string>(COLOR_LIST[0])
   const [title, setTitle] = useState<string>('')
-  const [labels, setLabels] = useState<ICardLabel[]>([])
   const card = useAppSelector((state) => state.card.card)
   const board = useAppSelector((state) => state.board.board)
+  const [labels, setLabels] = useState<ICardLabel[]>([])
   const [addNewLabel, { isSuccess, data, error, isError }] =
     useAddNewLabelMutation()
 
   const dispatch = useAppDispatch()
+
+  // useEffect(() => {
+  //   if (card?.labels !== undefined) {
+  //     setLabels(card.labels)
+  //   }
+  // }, [card])
 
   useEffect(() => {
     if (isSuccess) {
@@ -97,6 +104,9 @@ export default function useCreateLabel (): IUseLabel {
       )
   }
 
+  const isLabelSelected = (label: ICardLabel): boolean =>
+    labels.some((l) => l.text === label.text && l.color === label.color)
+
   return {
     card,
     board,
@@ -106,6 +116,7 @@ export default function useCreateLabel (): IUseLabel {
     handleColorClick,
     handleTitleChange,
     handleCreateLabel,
-    handleSelectLabel
+    handleSelectLabel,
+    isLabelSelected
   }
 }

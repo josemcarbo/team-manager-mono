@@ -85,12 +85,12 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 10px;
   margin-top: 5px;
 }
 
 .labels_container > span {
-  padding: 2px 5px;
+  padding: 2px 10px;
   border-radius: 8px;
   font-family: "Inconsolata", monospace;
   font-size: var(--text-small);
@@ -98,7 +98,8 @@
   cursor: pointer;
 }
 
+.labels_container > span:hover,
 .labels_container > span.selected {
   transform: scale(1.1);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }

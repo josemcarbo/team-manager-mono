@@ -42,6 +42,7 @@
 
 .detail_content > .detail_description {
   margin: 0 0 20px;
+  font-family: "Inconsolata", monospace;
 }
 
 .detail_status {
@@ -86,7 +87,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
 .detail_labels {
@@ -101,7 +102,7 @@
 }
 
 .detail_labels > div {
-  padding: 2px 10px;
+  padding: 2px 8px;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
@@ -116,6 +117,8 @@
 }
 
 .detail_labels > div > .icon {
+  width: 12px;
+  height: 12px;
   cursor: pointer;
   color: var(--text-secondary-color);
 }

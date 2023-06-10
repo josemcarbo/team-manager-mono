@@ -20,7 +20,8 @@ export default function CreateLabelComponent ({
     handleColorClick,
     handleTitleChange,
     handleCreateLabel,
-    handleSelectLabel
+    handleSelectLabel,
+    isLabelSelected
   } = useLabel()
 
   return (
@@ -54,19 +55,23 @@ export default function CreateLabelComponent ({
         </div>
       </div>
       {board !== null && board.labels.length > 0 && (
-        <div className={styles.labels_container}>
-          {board.labels.map((label, i) => (
-            <span
-              key={i}
-              style={{ backgroundColor: label.color }}
-              onClick={() => {
-                handleSelectLabel(label)
-              }}
-            >
-              {label.text}
-            </span>
-          ))}
-        </div>
+        <>
+          <h4>And/Or select the ones you want</h4>
+          <div className={styles.labels_container}>
+            {board.labels.map((label, i) => (
+              <span
+                key={i}
+                className={classNames(isLabelSelected(label) && styles.selected)}
+                style={{ backgroundColor: label.color }}
+                onClick={() => {
+                  handleSelectLabel(label)
+                }}
+              >
+                {label.text}
+              </span>
+            ))}
+          </div>
+        </>
       )}
     </section>
   )
