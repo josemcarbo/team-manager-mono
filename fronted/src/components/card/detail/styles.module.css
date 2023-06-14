@@ -87,7 +87,6 @@
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  /* margin-top: 5px; */
 }
 
 .detail_labels {
@@ -126,4 +125,20 @@
 .detail_labels > div > .icon:hover {
   transform: scale(1.1);
   color: var(--text-primary-color);
+}
+
+.detail_action_date {
+  box-sizing: border-box;
+  width: 440px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 220px);
+  background-color: var(--white-color);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  padding: 5px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
 }

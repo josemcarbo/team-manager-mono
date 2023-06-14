@@ -17,16 +17,20 @@ interface IUseDetail {
   card: Partial<ICard> | null
   bgColor: string
   openLabelView: boolean
+  openDateView: boolean
   showDetail: boolean
   handleClose: () => void
   handleOpenLabelView: () => void
   handleCloseLabelView: () => void
-  transformFromDateToFormatted: (date: Date) => string
+  transformFromDateToFormatted: (date: string) => string
   handleRemoveLabel: (label: ICardLabel) => Promise<void>
+  handleOpenDateView: () => void
+  handleCloseDateView: () => void
 }
 
 export default function useDetail (): IUseDetail {
   const [openLabelView, setOpenLabelView] = useState(false)
+  const [openDateView, setOpenDateView] = useState(false)
   const card = useAppSelector((state) => state.card.card)
   const showDetail = useAppSelector((state) => state.card.detailViewOpen)
   const [removeLabel, { isSuccess, data, isError, error }] =
@@ -48,16 +52,26 @@ export default function useDetail (): IUseDetail {
     dispatch(detailViewOpen(false))
   }
 
-  const transformFromDateToFormatted = (date: Date): string => {
+  const transformFromDateToFormatted = (date: string): string => {
     return moment(date).format('MMM DD, YYYY')
   }
 
   const handleOpenLabelView = (): void => {
     setOpenLabelView(true)
+    setOpenDateView(false)
   }
 
   const handleCloseLabelView = (): void => {
     setOpenLabelView(false)
+  }
+
+  const handleOpenDateView = (): void => {
+    setOpenLabelView(false)
+    setOpenDateView(true)
+  }
+
+  const handleCloseDateView = (): void => {
+    setOpenDateView(false)
   }
 
   const handleRemoveLabel = async (label: ICardLabel): Promise<void> => {
@@ -68,11 +82,14 @@ export default function useDetail (): IUseDetail {
     card,
     bgColor: LIST_COLOR[card?.status as keyof typeof LIST_COLOR],
     openLabelView,
+    openDateView,
     showDetail,
     handleClose,
     transformFromDateToFormatted,
     handleOpenLabelView,
     handleCloseLabelView,
+    handleOpenDateView,
+    handleCloseDateView,
     handleRemoveLabel
   }
 }

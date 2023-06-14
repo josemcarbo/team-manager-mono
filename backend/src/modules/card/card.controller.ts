@@ -15,6 +15,8 @@ import {
   CardFindAllParameters,
   CardFindOneRequestDto,
   CardFindOneResponseDto,
+  CardUpdateRequestDto,
+  CardUpdateValidator,
 } from './card.dto';
 import { CardService } from './card.service';
 import { ICard } from './card.interface';
@@ -90,5 +92,16 @@ export class CardController {
     @Body() labels: CardCreateLabelRequestDto[],
   ): Promise<ICard> {
     return this.cardService.removeLabel(id, labels);
+  }
+
+  @ApiBearerAuth()
+  @ApiResponse({ status: 200, type: CardFindOneResponseDto })
+  @ApiOperation({ description: 'Update a card label' })
+  @Patch('/:id')
+  update(
+    @Param() { id }: CardFindOneRequestDto,
+    @Body(CardUpdateValidator) card: CardUpdateRequestDto,
+  ): Promise<ICard> {
+    return this.cardService.update(id, card);
   }
 }

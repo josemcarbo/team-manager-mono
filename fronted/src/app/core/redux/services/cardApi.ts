@@ -12,13 +12,28 @@ export interface ICard {
   description?: string
   status: string
   labels: ICardLabel[]
-  dueDate?: Date
-  startDate?: Date
+  dueDate?: string
+  startDate?: string
   assignee?: string
   reviewer?: string
   points: number
   owner: string
   board: string
+}
+
+export interface ICardUpdate {
+  id: string
+  card: {
+    name?: string
+    description?: string
+    status?: string
+    labels?: ICardLabel[]
+    dueDate?: string
+    startDate?: string
+    assignee?: string
+    reviewer?: string
+    points?: number
+  }
 }
 
 export interface ICardFindParam {
@@ -70,6 +85,13 @@ export const cardApi = createApi({
         method: 'PATCH',
         body: labels
       })
+    }),
+    update: builder.mutation<ICard, ICardUpdate>({
+      query: ({ id, card }) => ({
+        url: `/${id}`,
+        method: 'PATCH',
+        body: card
+      })
     })
   })
 })
@@ -78,5 +100,6 @@ export const {
   useFindAllCardQuery,
   useRemoveMutation,
   useAddNewLabelMutation,
-  useRemoveLabelMutation
+  useRemoveLabelMutation,
+  useUpdateMutation
 } = cardApi

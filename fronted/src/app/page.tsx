@@ -33,7 +33,7 @@ export default function HomePage (): React.ReactElement {
     isError: boardIsError,
     error: boardError,
     isLoading: boardIsLoading
-  } = useFindAllQuery(token === null ? skipToken : undefined)
+  } = useFindAllQuery(!userIsSuccess ? skipToken : undefined)
 
   useEffect(() => {
     token === null && router.push('/login')

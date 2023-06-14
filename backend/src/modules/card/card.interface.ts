@@ -9,8 +9,8 @@ export interface ICard {
   description?: string;
   status: string;
   labels?: ICardLabel[];
-  dueDate?: Date;
-  startDate?: Date;
+  dueDate?: string;
+  startDate?: string;
   assignee?: string;
   reviewer?: string;
   points?: number;

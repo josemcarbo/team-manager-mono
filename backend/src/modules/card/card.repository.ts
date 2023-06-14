@@ -28,7 +28,8 @@ export class CardRepository {
   }
 
   async update(id: string, card: any): Promise<ICard> {
-    return this.db.updateOne({ _id: id }, card).lean();
+    await this.db.updateOne({ _id: id }, card).lean();
+    return this.findOne(id);
   }
 
   async addNewLabel(id: string, labels: ICardLabel[]): Promise<ICard> {

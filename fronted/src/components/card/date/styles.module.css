@@ -1,0 +1,37 @@
+.date_container {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 3px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.date_actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.date_actions > .icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  color: var(--text-tertiary-color);
+}
+
+.date_actions > .icon:hover {
+  transform: scale(1.1);
+  color: var(--text-primary-color);
+}
+
+.date_content_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}

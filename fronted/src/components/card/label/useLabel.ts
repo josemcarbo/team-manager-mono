@@ -38,12 +38,6 @@ export default function useCreateLabel (): IUseLabel {
 
   const dispatch = useAppDispatch()
 
-  // useEffect(() => {
-  //   if (card?.labels !== undefined) {
-  //     setLabels(card.labels)
-  //   }
-  // }, [card])
-
   useEffect(() => {
     if (isSuccess) {
       dispatch(refreshOne(data as ICard))

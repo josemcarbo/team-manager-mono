@@ -56,4 +56,8 @@ export class CardService {
   async removeLabel(id: string, labels: ICardLabel[]): Promise<ICard> {
     return this.cardRepository.removeLabel(id, labels);
   }
+
+  async update(id: string, card: Partial<ICard>): Promise<ICard> {
+    return this.cardRepository.update(id, card);
+  }
 }

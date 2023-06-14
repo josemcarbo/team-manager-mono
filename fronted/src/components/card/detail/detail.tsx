@@ -7,10 +7,11 @@ import OverlayComponent from '@/components/overlay/overlay'
 import {
   HiOutlineClock,
   HiOutlineTag,
-  HiOutlineUserPlus,
+  // HiOutlineUserPlus,
   HiOutlineXMark
 } from 'react-icons/hi2'
 import CreateLabelComponent from '../label/label'
+import DateRangeComponent from '../date/date'
 
 export default function CardIDetailComponent (): React.ReactElement {
   const {
@@ -18,9 +19,12 @@ export default function CardIDetailComponent (): React.ReactElement {
     bgColor,
     showDetail,
     openLabelView,
+    openDateView,
     handleClose,
     handleCloseLabelView,
     handleOpenLabelView,
+    handleOpenDateView,
+    handleCloseDateView,
     transformFromDateToFormatted,
     handleRemoveLabel
   } = useDetail()
@@ -69,14 +73,23 @@ export default function CardIDetailComponent (): React.ReactElement {
                   className={styles.icon}
                   onClick={handleOpenLabelView}
                 />
-                <HiOutlineClock title="Edit duration" className={styles.icon} />
-                <HiOutlineUserPlus
+                <HiOutlineClock
+                  title="Edit duration"
+                  className={styles.icon}
+                  onClick={handleOpenDateView}
+                />
+                {/* <HiOutlineUserPlus
                   title="Edit members"
                   className={styles.icon}
-                />
+                /> */}
                 {openLabelView && (
                   <div className={styles.detail_action_label}>
                     <CreateLabelComponent onClose={handleCloseLabelView} />
+                  </div>
+                )}
+                {openDateView && (
+                  <div className={styles.detail_action_date}>
+                    <DateRangeComponent onClose={handleCloseDateView} />
                   </div>
                 )}
               </div>
