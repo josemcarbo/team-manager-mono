@@ -1,0 +1,34 @@
+.board_selector_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.board_selector_container > span {
+    padding: 3px 10px;
+    border-radius: 8px;
+}
+
+.board_selector_container > span:hover,
+.board_selector_container > span.selected {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.board_selector_container > .icon {
+    font-size: var(--text-large);
+    color: var(--text-secondary-color);
+}
+
+.board_selector_container > .icon:hover {
+    transform: scale(1.1);
+    color: var(--text-primary-color);
+}
+
+.board_selector_container > span.more:hover,
+.board_selector_container > span.more {
+    background-color: var(--disabled-color);
+    color: var(--text-primary-color);
+    font-size: var(--text-small);
+}

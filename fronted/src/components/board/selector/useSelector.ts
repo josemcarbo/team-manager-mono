@@ -5,6 +5,7 @@ import { type IBoard } from '@/app/core/redux/services/boardApi'
 
 interface UseSelector {
   boardList: IBoard[]
+  boardListHide: IBoard[]
   board: IBoard | null
   boardSettingOpen: boolean
   handleSettingOpen: () => void
@@ -13,16 +14,20 @@ interface UseSelector {
 }
 
 export default function useSelector (): UseSelector {
-  const boardList = useAppSelector((state) => state.board.boards)
+  const boards = useAppSelector((state) => state.board.boards)
+  const [boardList, setBoardList] = useState<IBoard[]>([])
+  const [boardListHide, setBoardListHide] = useState<IBoard[]>([])
   const board = useAppSelector((state) => state.board.board)
   const [boardSettingOpen, setBoardSettingOpen] = useState(true)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (boardList.length > 0) {
-      board === null && dispatch(selectBoard(boardList[0]))
+    if (boards.length > 0) {
+      board === null && dispatch(selectBoard(boards[0]))
+      setBoardList(boards.slice(0, 3))
+      setBoardListHide(boards.slice(3))
     }
-  }, [boardList])
+  }, [boards])
 
   const handleSettingOpen = (): void => {
     setBoardSettingOpen(!boardSettingOpen)
@@ -38,6 +43,7 @@ export default function useSelector (): UseSelector {
 
   return {
     boardList,
+    boardListHide,
     board,
     boardSettingOpen,
     handleSettingOpen,
