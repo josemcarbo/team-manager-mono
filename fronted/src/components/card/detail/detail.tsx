@@ -5,6 +5,7 @@ import styles from './styles.module.css'
 import useDetail from './useDetail'
 import OverlayComponent from '@/components/overlay/overlay'
 import {
+  HiOutlineArrowsRightLeft,
   HiOutlineClock,
   HiOutlineTag,
   // HiOutlineUserPlus,
@@ -12,6 +13,7 @@ import {
 } from 'react-icons/hi2'
 import CreateLabelComponent from '../label/label'
 import DateRangeComponent from '../date/date'
+import CardStatusComponent from '../status/status'
 
 export default function CardIDetailComponent (): React.ReactElement {
   const {
@@ -20,11 +22,14 @@ export default function CardIDetailComponent (): React.ReactElement {
     showDetail,
     openLabelView,
     openDateView,
+    openListView,
     handleClose,
     handleCloseLabelView,
     handleOpenLabelView,
     handleOpenDateView,
     handleCloseDateView,
+    handleOpenListView,
+    handleCloseListView,
     transformFromDateToFormatted,
     handleRemoveLabel
   } = useDetail()
@@ -78,6 +83,11 @@ export default function CardIDetailComponent (): React.ReactElement {
                   className={styles.icon}
                   onClick={handleOpenDateView}
                 />
+                <HiOutlineArrowsRightLeft
+                  title="Move to another list"
+                  className={styles.icon}
+                  onClick={handleOpenListView}
+                />
                 {/* <HiOutlineUserPlus
                   title="Edit members"
                   className={styles.icon}
@@ -90,6 +100,11 @@ export default function CardIDetailComponent (): React.ReactElement {
                 {openDateView && (
                   <div className={styles.detail_action_date}>
                     <DateRangeComponent onClose={handleCloseDateView} />
+                  </div>
+                )}
+                {openListView && (
+                  <div className={styles.detail_action_list}>
+                    <CardStatusComponent onClose={handleCloseListView} />
                   </div>
                 )}
               </div>

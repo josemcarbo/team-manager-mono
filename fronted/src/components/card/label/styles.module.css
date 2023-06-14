@@ -96,10 +96,10 @@
   font-size: var(--text-small);
   color: var(--text-primary-color);
   cursor: pointer;
+  opacity: 0.4;
 }
 
 .labels_container > span:hover,
 .labels_container > span.selected {
-  transform: scale(1.1);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  opacity: 1;
 }
