@@ -42,7 +42,7 @@
 
 .detail_content > .detail_description {
   margin: 0 0 20px;
-  font-family: "Inconsolata", monospace;
+  /* font-family: "Inconsolata", monospace; */
 }
 
 .detail_status {
@@ -111,7 +111,7 @@
 }
 
 .detail_labels > div > span {
-  font-family: "Inconsolata", monospace;
+  /* font-family: "Inconsolata", monospace; */
   font-size: var(--text-medium);
 }
 

@@ -63,6 +63,7 @@ export default function useDetail (): IUseDetail {
   const handleOpenLabelView = (): void => {
     setOpenLabelView(true)
     setOpenDateView(false)
+    setOpenListView(false)
   }
 
   const handleCloseLabelView = (): void => {
@@ -72,6 +73,7 @@ export default function useDetail (): IUseDetail {
   const handleOpenDateView = (): void => {
     setOpenLabelView(false)
     setOpenDateView(true)
+    setOpenListView(false)
   }
 
   const handleCloseDateView = (): void => {
