@@ -27,7 +27,7 @@ export default function ColumnViewComponent ({
         <HiOutlinePlusSmall className={styles.icon} />
       </header>
       <div className={styles.content}>
-        <CardList cards={cards} />
+        <CardList title={title} cards={cards} />
       </div>
     </article>
   )
