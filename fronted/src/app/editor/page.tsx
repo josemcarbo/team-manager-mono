@@ -1,16 +1,15 @@
 'use client'
 import React from 'react'
 import {
-  BsCode,
+  // BsCode,
+  BsTypeH1,
   BsJustify,
   BsJustifyLeft,
   BsJustifyRight,
+  BsTextCenter,
   BsListOl,
   BsListUl,
   BsTypeBold,
-  BsTypeH1,
-  BsTypeH2,
-  BsTypeH3,
   BsTypeItalic,
   BsTypeStrikethrough,
   BsTypeUnderline
@@ -19,74 +18,94 @@ import styles from './styles.module.css'
 import useEditor from './useEditor'
 
 export default function EditorComponent (): React.ReactElement {
-  const { text, handleOnKeyDown, handleSelectCapture, format, handleMouseUp } = useEditor()
+  const { execCommand } = useEditor()
 
   return (
     <div className={styles.editor_container}>
-      <div id='actions' className={styles.editor_actions}>
-        <div>
-          <BsTypeH1
-            className={styles.icon}
-            onClick={() => {
-              format('h1')
-            }}
-          />
-          <BsTypeH2
-            className={styles.icon}
-            onClick={() => {
-              format('h2')
-            }}
-          />
-          <BsTypeH3
-            className={styles.icon}
-            onClick={() => {
-              format('h3')
-            }}
-          />
-        </div>
-        <div>
-          <BsTypeBold
-            className={styles.icon}
-            onClick={() => {
-              format('b')
-            }}
-          />
-          <BsTypeItalic
-            className={styles.icon}
-            onClick={() => {
-              format('i')
-            }}
-          />
-          <BsTypeUnderline
-            className={styles.icon}
-            onClick={() => {
-              format('u')
-            }}
-          />
+      <div id="actions" className={styles.editor_actions}>
+        <button
+          onClick={() => {
+            execCommand('h1')
+          }}
+        >
+          <BsTypeH1 className={styles.icon} />
+        </button>
+        <button
+          onClick={() => {
+            execCommand('b')
+          }}
+        >
+          <BsTypeBold className={styles.icon} />
+        </button>
+        <button
+          onClick={() => {
+            execCommand('i')
+          }}
+        >
+          <BsTypeItalic className={styles.icon} />
+        </button>
+        <button
+          onClick={() => {
+            execCommand('u')
+          }}
+        >
+          <BsTypeUnderline className={styles.icon} />
+        </button>
+        <button
+          onClick={() => {
+            execCommand('s')
+          }}
+        >
           <BsTypeStrikethrough className={styles.icon} />
-          <BsCode
-            className={styles.icon}
-            onClick={() => {
-              format('code')
-            }}
-          />
-        </div>
-        <div>
+        </button>
+        <button
+          onClick={() => {
+            execCommand('left')
+          }}
+        >
           <BsJustifyLeft className={styles.icon} />
+        </button>
+        <button
+          onClick={() => {
+            execCommand('center')
+          }}
+        >
+          <BsTextCenter className={styles.icon} />
+        </button>
+        <button
+          onClick={() => {
+            execCommand('right')
+          }}
+        >
           <BsJustifyRight className={styles.icon} />
+        </button>
+        <button
+          onClick={() => {
+            execCommand('justify')
+          }}
+        >
           <BsJustify className={styles.icon} />
-        </div>
-        <div>
+        </button>
+        <button
+          onClick={() => {
+            execCommand('ol')
+          }}
+        >
           <BsListOl className={styles.icon} />
+        </button>
+        <button
+          onClick={() => {
+            execCommand('ul')
+          }}
+        >
           <BsListUl className={styles.icon} />
-        </div>
+        </button>
       </div>
       <div
         id="editor"
         tabIndex={0}
         contentEditable={true}
         suppressContentEditableWarning={true}
-        onMouseUp={handleMouseUp}
         className={styles.editor_content}
       ></div>
     </div>
