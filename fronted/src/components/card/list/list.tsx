@@ -16,7 +16,7 @@ export default function CardListComponent ({
   cards,
   title
 }: Props): React.ReactElement {
-  const { isOver, handleDrop, handleDropOver, handleDropLeave } =
+  const { isOver, handleDrop, handleDropOver, handleDropLeave, handleDropEnter } =
     useList({ title })
 
   return (
@@ -27,6 +27,7 @@ export default function CardListComponent ({
         onDrop={handleDrop}
         onDragOver={handleDropOver}
         onDragLeave={handleDropLeave}
+        onDragEnter={handleDropEnter}
       >
         {cards.map((card: ICard) => (
           <DragComponent id={card.id as string} key={card.id}>

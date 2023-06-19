@@ -13,6 +13,7 @@ interface IUseList {
   handleDrop: (e: any) => Promise<void>
   handleDropOver: (e: any) => void
   handleDropLeave: (e: any) => void
+  handleDropEnter: (e: any) => void
 }
 
 export default function useList ({ title }: Props): IUseList {
@@ -72,10 +73,16 @@ export default function useList ({ title }: Props): IUseList {
     setIsOver(false)
   }
 
+  const handleDropEnter = (e: any): void => {
+    e.preventDefault()
+    setIsOver(false)
+  }
+
   return {
     isOver,
     handleDrop,
     handleDropOver,
-    handleDropLeave
+    handleDropLeave,
+    handleDropEnter
   }
 }

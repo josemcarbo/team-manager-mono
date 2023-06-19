@@ -8,7 +8,6 @@ import {
   HiOutlineArrowsRightLeft,
   HiOutlineClock,
   HiOutlineTag,
-  // HiOutlineUserPlus,
   HiOutlineXMark
 } from 'react-icons/hi2'
 import CreateLabelComponent from '../label/label'
@@ -88,10 +87,6 @@ export default function CardIDetailComponent (): React.ReactElement {
                   className={styles.icon}
                   onClick={handleOpenListView}
                 />
-                {/* <HiOutlineUserPlus
-                  title="Edit members"
-                  className={styles.icon}
-                /> */}
                 {openLabelView && (
                   <div className={styles.detail_action_label}>
                     <CreateLabelComponent onClose={handleCloseLabelView} />
@@ -108,15 +103,15 @@ export default function CardIDetailComponent (): React.ReactElement {
                   </div>
                 )}
               </div>
-              {card?.description !== '' && (
-                <div
-                  className={styles.detail_description}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      card?.description !== undefined ? card.description : ''
-                  }}
-                />
-              )}
+              <div
+                className={styles.detail_description}
+                dangerouslySetInnerHTML={{
+                  __html:
+                    card?.description !== undefined && card?.description !== ''
+                      ? card.description
+                      : '<i>Add a description...</i>'
+                }}
+              />
             </div>
           </article>
         </OverlayComponent>
