@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import { useAppDispatch, useAppSelector } from '@/app/core/redux/hooks'
 import { refreshOne } from '@/app/core/redux/features/cardSlice'
 import { COLOR_LIST } from '@/app/core/constants'
@@ -13,6 +12,7 @@ import {
   type IBoard
 } from '@/app/core/redux/services/boardApi'
 import { refreshLabelList } from '@/app/core/redux/features/boardSlice'
+import { refreshOneError } from '@/app/core/redux/features/errorSlice'
 
 interface IUseLabel {
   colors: string[]
@@ -60,7 +60,7 @@ export default function useCreateLabel (): IUseLabel {
 
     if (isError && error !== null) {
       const { status, data } = error as any
-      toast.error(`${status as string}: ${data.message as string}`)
+      dispatch(refreshOneError({ status: status as number, message: data?.message }))
     }
   }, [isSuccess, data, error, isError])
 
@@ -74,7 +74,7 @@ export default function useCreateLabel (): IUseLabel {
 
   const handleCreateLabel = async (): Promise<void> => {
     if (labels.length === 0 && title === '') {
-      toast.error('Select at least one tag and/or insert the tag name')
+      dispatch(refreshOneError({ status: 0, message: 'Select at least one tag and/or insert the tag name' }))
       return
     }
     card !== null &&

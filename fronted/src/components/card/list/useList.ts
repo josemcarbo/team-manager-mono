@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import { refreshOne } from '@/app/core/redux/features/cardSlice'
 import { useAppDispatch, useAppSelector } from '@/app/core/redux/hooks'
 import { type ICard, useUpdateMutation } from '@/app/core/redux/services/cardApi'
+import { refreshOneError } from '@/app/core/redux/features/errorSlice'
 
 interface Props {
   title: string
@@ -30,7 +30,7 @@ export default function useList ({ title }: Props): IUseList {
 
     if (isError && error !== null) {
       const { status, data } = error as any
-      toast.error(`${status as string}: ${data.message as string}`)
+      dispatch(refreshOneError({ status: status as number, message: data?.message }))
     }
   }, [isSuccess, data, error, isError])
 

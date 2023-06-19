@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify'
 import { useAppDispatch, useAppSelector } from '@/app/core/redux/hooks'
 import {
   type IBoard,
@@ -6,6 +5,7 @@ import {
 } from '@/app/core/redux/services/boardApi'
 import { useEffect, useState } from 'react'
 import { refreshOne } from '@/app/core/redux/features/boardSlice'
+import { refreshOneError } from '@/app/core/redux/features/errorSlice'
 
 interface IUserCreateList {
   name: string
@@ -32,7 +32,7 @@ export default function useCreateList (): IUserCreateList {
 
     if (isError && error !== null) {
       const { status, data } = error as any
-      toast.error(`${status as string}: ${data.message as string}`)
+      dispatch(refreshOneError({ status: status as number, message: data?.message }))
     }
   }, [isSuccess, data, error, isError])
 

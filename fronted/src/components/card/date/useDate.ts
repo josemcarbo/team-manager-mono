@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import { useAppDispatch, useAppSelector } from '@/app/core/redux/hooks'
 import { refreshOne } from '@/app/core/redux/features/cardSlice'
 import {
   type ICard,
   useUpdateMutation
 } from '@/app/core/redux/services/cardApi'
+import { refreshOneError } from '@/app/core/redux/features/errorSlice'
 
 interface IUseLabel {
   card: ICard | null
@@ -32,7 +32,7 @@ export default function useDateRange (): IUseLabel {
 
     if (isError && error !== null) {
       const { status, data } = error as any
-      toast.error(`${status as string}: ${data.message as string}`)
+      dispatch(refreshOneError({ status: status as number, message: data?.message }))
     }
   }, [isSuccess, data, error, isError])
 
@@ -43,7 +43,7 @@ export default function useDateRange (): IUseLabel {
       (startDate === undefined || startDate === null) &&
       (dueDate === undefined) === null
     ) {
-      toast.error('You must select at least one date')
+      dispatch(refreshOneError({ status: 0, message: 'You must select at least one date' }))
       return
     }
 
@@ -52,7 +52,7 @@ export default function useDateRange (): IUseLabel {
       dueDate !== undefined &&
       startDate > dueDate
     ) {
-      toast.error('Start date must be before due date')
+      dispatch(refreshOneError({ status: 0, message: 'Start date must be before due date' }))
     } else {
       await update({ id: card?.id as string, card: { startDate, dueDate } })
     }

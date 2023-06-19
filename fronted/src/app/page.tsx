@@ -1,6 +1,5 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { toast } from 'react-toastify'
 import { skipToken } from '@reduxjs/toolkit/query/react'
 import useSessionStorage from '@/app/core/hooks/useLocalStorage'
 import React, { useEffect } from 'react'
@@ -13,6 +12,7 @@ import Loading from '../components/loading/loading'
 import BoardCreate from '../components/board/create/page'
 import styles from './page.module.css'
 import Board from '@/components/board/list/board'
+import { refreshOneError } from './core/redux/features/errorSlice'
 
 export default function HomePage (): React.ReactElement {
   const router = useRouter()
@@ -46,11 +46,7 @@ export default function HomePage (): React.ReactElement {
 
     if (userIsError && userError !== null) {
       const { status, data } = userError as any
-      toast.error(
-        `${status as string}: ${
-          (data?.message ?? 'ERR_CONNECTION_REFUSED') as string
-        }`
-      )
+      dispatch(refreshOneError({ status: status as number, message: data?.message ?? 'ERR_CONNECTION_REFUSED' }))
     }
   }, [userIsSuccess, user, userIsError, userError])
 
@@ -61,11 +57,7 @@ export default function HomePage (): React.ReactElement {
 
     if (boardIsError && boardError !== null) {
       const { status, data } = boardError as any
-      toast.error(
-        `${status as string}: ${
-          (data?.message ?? 'ERR_CONNECTION_REFUSED') as string
-        }`
-      )
+      dispatch(refreshOneError({ status: status as number, message: data?.message ?? 'ERR_CONNECTION_REFUSED' }))
     }
   }, [boards, boardIsSuccess, boardIsError, boardError])
 

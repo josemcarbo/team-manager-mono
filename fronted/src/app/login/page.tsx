@@ -4,15 +4,18 @@ import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
 import styles from './styles.module.css'
 import { useLoginMutation } from '@/app/core/redux/services/authAApi'
 import useSessionStorage from '@/app/core/hooks/useLocalStorage'
+import { refreshOneError } from '../core/redux/features/errorSlice'
+import { useAppDispatch } from '../core/redux/hooks'
 
 export default function LoginPage (): React.ReactElement {
   const router = useRouter()
   const [login, { isSuccess, data, error, isError }] = useLoginMutation()
   const { setValue } = useSessionStorage()
+  const dispatch = useAppDispatch()
+
   const {
     register,
     handleSubmit,
@@ -28,7 +31,7 @@ export default function LoginPage (): React.ReactElement {
 
     if (isError && error !== null) {
       const { status, data } = error as any
-      toast.error(`${status as string}: ${data.message as string}`)
+      dispatch(refreshOneError({ status: status as number, message: data?.message }))
     }
   }, [isSuccess, data, isError, error])
 

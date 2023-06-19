@@ -1,5 +1,4 @@
 import moment from 'moment-timezone'
-import { toast } from 'react-toastify'
 import {
   detailViewOpen,
   refreshOne
@@ -12,6 +11,7 @@ import {
 } from '@/app/core/redux/services/cardApi'
 import { LIST_COLOR } from '@/app/core/constants'
 import { useEffect, useState } from 'react'
+import { refreshOneError } from '@/app/core/redux/features/errorSlice'
 
 interface IUseDetail {
   card: Partial<ICard> | null
@@ -48,7 +48,7 @@ export default function useDetail (): IUseDetail {
 
     if (isError && error !== null) {
       const { status, data } = error as any
-      toast.error(`${status as string}: ${data.message as string}`)
+      dispatch(refreshOneError({ status: status as number, message: data?.message }))
     }
   }, [isSuccess, data, isError, error])
 

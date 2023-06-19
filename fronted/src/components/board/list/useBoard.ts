@@ -4,11 +4,11 @@ import {
   type ICard,
   useFindAllCardQuery
 } from '@/app/core/redux/services/cardApi'
-import { toast } from 'react-toastify'
 import { skipToken } from '@reduxjs/toolkit/query/react'
 import { useEffect } from 'react'
 import { type IBoard } from '@/app/core/redux/services/boardApi'
 import { refreshList } from '@/app/core/redux/features/cardSlice'
+import { refreshOneError } from '@/app/core/redux/features/errorSlice'
 
 interface IUseBoard {
   board: IBoard | null
@@ -31,11 +31,7 @@ export default function useBoard (): IUseBoard {
 
     if (isError && error !== null) {
       const { status, data } = error as any
-      toast.error(
-        `${status as string}: ${
-          (data?.message ?? 'ERR_CONNECTION_REFUSED') as string
-        }`
-      )
+      dispatch(refreshOneError({ status: status as number, message: data?.message }))
     }
   }, [isSuccess, data, isError, error])
 

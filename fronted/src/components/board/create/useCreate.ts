@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import { useCreateMutation } from '@/app/core/redux/services/boardApi'
 import {
   refreshOne,
@@ -7,6 +6,7 @@ import {
 } from '@/app/core/redux/features/boardSlice'
 import { useAppDispatch, useAppSelector } from '@/app/core/redux/hooks'
 import { BOARD_LIST } from '@/app/core/constants'
+import { refreshOneError } from '@/app/core/redux/features/errorSlice'
 
 interface UseCreate {
   board: any
@@ -40,7 +40,7 @@ export default function useCreate (): UseCreate {
 
     if (isError && error !== null) {
       const { status, data } = error as any
-      toast.error(`${status as string}: ${data.message as string}`)
+      dispatch(refreshOneError({ status: status as number, message: data?.message }))
     }
   }, [isSuccess, data, isError, error])
 

@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.min.css'
 import './globals.css'
 import styles from './app.module.css'
 import Navbar from '@/components/navbar/navbar'
+import ErrorHandler from '@/components/error/error'
 
 interface Props {
   children: React.ReactNode
@@ -30,10 +31,12 @@ export default function App ({ children }: Props): React.ReactElement {
           limit={3}
           transition={Slide}
         />
-        <div className={styles.app_container}>
-          <Navbar />
-          {children}
-        </div>
+        <ErrorHandler>
+          <div className={styles.app_container}>
+            <Navbar />
+            {children}
+          </div>
+        </ErrorHandler>
       </Providers>
     </>
   )

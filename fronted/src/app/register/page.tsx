@@ -2,15 +2,18 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import styles from './styles.module.css'
 import { useCreateUserMutation } from '@/app/core/redux/services/userApi'
+import { refreshOneError } from '../core/redux/features/errorSlice'
+import { useAppDispatch } from '../core/redux/hooks'
 
 export default function RegisterPage (): React.ReactElement {
   const router = useRouter()
   const [createUser] = useCreateUserMutation()
+  const dispatch = useAppDispatch()
+
   const {
     register,
     handleSubmit,
@@ -26,7 +29,7 @@ export default function RegisterPage (): React.ReactElement {
       const {
         error: { status, data }
       } = response
-      toast.error(`${status as string}: ${data.message as string}`)
+      dispatch(refreshOneError({ status: status as number, message: data?.message }))
     } else {
       router.push('/login')
     }
