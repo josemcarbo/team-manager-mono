@@ -53,6 +53,11 @@ export const card = createSlice({
     },
     selectCard: (state, action: PayloadAction<ICard>) => {
       state.card = action.payload
+    },
+    resetCardState: (state) => {
+      state.cards = initialState.cards
+      state.card = initialState.card
+      state.detailViewOpen = initialState.detailViewOpen
     }
   }
 })
@@ -63,7 +68,8 @@ export const {
   detailViewOpen,
   createViewOpen,
   removeOne,
-  selectCard
+  selectCard,
+  resetCardState
 } = card.actions
 
 export default card.reducer

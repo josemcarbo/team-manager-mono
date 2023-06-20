@@ -60,6 +60,11 @@ export const board = createSlice({
           return board
         })
       }
+    },
+    resetBoardState: (state) => {
+      state.boards = initialState.boards
+      state.board = initialState.board
+      state.createViewOpen = initialState.createViewOpen
     }
   }
 })
@@ -69,7 +74,8 @@ export const {
   refreshList,
   selectBoard,
   createViewOpen,
-  refreshLabelList
+  refreshLabelList,
+  resetBoardState
 } = board.actions
 
 export default board.reducer
