@@ -74,7 +74,7 @@ export default function useCreateLabel (): IUseLabel {
 
   const handleCreateLabel = async (): Promise<void> => {
     if (labels.length === 0 && title === '') {
-      dispatch(refreshOneError({ status: 0, message: 'Select at least one tag and/or insert the tag name' }))
+      dispatch(refreshOneError({ status: 1, message: 'Select at least one tag and/or insert the tag name' }))
       return
     }
     card !== null &&

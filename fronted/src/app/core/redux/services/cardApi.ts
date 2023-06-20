@@ -48,19 +48,14 @@ interface IAddNewLabel {
   labels: ICardLabel[]
 }
 
-let token = ''
-if (typeof localStorage?.getItem('token') === 'string') {
-  token = `Bearer ${(localStorage?.getItem('token') as string).replace(
-    /"/g,
-    ''
-  )}`
-}
-
 export const cardApi = createApi({
   reducerPath: 'cardApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_API_URL}/cards`,
     prepareHeaders: (headers) => {
+      const token = `Bearer ${(
+        localStorage?.getItem('token') as string
+      ).replace(/"/g, '')}`
       headers.set('Authorization', token)
       return headers
     }

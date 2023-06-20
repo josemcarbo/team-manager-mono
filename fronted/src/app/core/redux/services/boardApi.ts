@@ -34,19 +34,14 @@ interface AddNewList {
   list: string
 }
 
-let token = ''
-if (typeof localStorage?.getItem('token') === 'string') {
-  token = `Bearer ${(localStorage?.getItem('token') as string).replace(
-    /"/g,
-    ''
-  )}`
-}
-
 export const boardApi = createApi({
   reducerPath: 'boardApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_API_URL}/boards`,
     prepareHeaders: (headers) => {
+      const token = `Bearer ${(
+        localStorage?.getItem('token') as string
+      ).replace(/"/g, '')}`
       headers.set('Authorization', token)
       return headers
     }

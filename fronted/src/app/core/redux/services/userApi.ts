@@ -20,19 +20,14 @@ interface CreateUser {
   password: string
 }
 
-let token = ''
-if (typeof localStorage?.getItem('token') === 'string') {
-  token = `Bearer ${(localStorage?.getItem('token') as string).replace(
-    /"/g,
-    ''
-  )}`
-}
-
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_API_URL}/users`,
     prepareHeaders: (headers) => {
+      const token = `Bearer ${(
+        localStorage?.getItem('token') as string
+      ).replace(/"/g, '')}`
       headers.set('Authorization', token)
       return headers
     }

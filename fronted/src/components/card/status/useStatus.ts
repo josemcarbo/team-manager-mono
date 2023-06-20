@@ -36,7 +36,7 @@ export default function useCardStatus (): IUseLabel {
 
   const handleUpdate = async (): Promise<void> => {
     if (selected === '') {
-      dispatch(refreshOneError({ status: 0, message: 'Please select a list' }))
+      dispatch(refreshOneError({ status: 1, message: 'Please select a list' }))
     } else {
       await update({ id: card?.id as string, card: { status: selected } })
     }

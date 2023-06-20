@@ -43,7 +43,7 @@ export default function useDateRange (): IUseLabel {
       (startDate === undefined || startDate === null) &&
       (dueDate === undefined) === null
     ) {
-      dispatch(refreshOneError({ status: 0, message: 'You must select at least one date' }))
+      dispatch(refreshOneError({ status: 1, message: 'You must select at least one date' }))
       return
     }
 
@@ -52,7 +52,7 @@ export default function useDateRange (): IUseLabel {
       dueDate !== undefined &&
       startDate > dueDate
     ) {
-      dispatch(refreshOneError({ status: 0, message: 'Start date must be before due date' }))
+      dispatch(refreshOneError({ status: 1, message: 'Start date must be before due date' }))
     } else {
       await update({ id: card?.id as string, card: { startDate, dueDate } })
     }
