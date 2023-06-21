@@ -1,0 +1,62 @@
+.card_form_container {
+  box-sizing: border-box;
+  width: 400px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  background-color: var(--background-color);
+  position: relative;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card_form_container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card_form_container > div > label {
+  font-size: var(--text-large);
+  font-weight: 600;
+}
+
+.card_form_container > div > textarea {
+  resize: none;
+  height: 100px;
+  border-radius: 4px;
+}
+
+.card_form_container > div > select {
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.card_form_container > .card_form_button_group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.card_form_container > .card_form_button_group > button {
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 0;
+}
+
+.card_form_container > .card_form_button_group > button.button_primary {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--white-color);
+}
+
+.card_form_container > .card_form_button_group > button.button_secondary {
+  border: 1px solid var(--primary-color);
+  background-color: var(--white-color);
+  color: var(--primary-color);
+}

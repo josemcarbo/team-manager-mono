@@ -11,13 +11,13 @@ export interface ICard {
   name: string
   description?: string
   status: string
-  labels: ICardLabel[]
+  labels?: ICardLabel[]
   dueDate?: string
   startDate?: string
   assignee?: string
   reviewer?: string
-  points: number
-  owner: string
+  points?: number
+  owner?: string
   board: string
 }
 
@@ -87,6 +87,13 @@ export const cardApi = createApi({
         method: 'PATCH',
         body: card
       })
+    }),
+    create: builder.mutation<ICard, ICard>({
+      query: (body) => ({
+        url: '',
+        method: 'POST',
+        body
+      })
     })
   })
 })
@@ -96,5 +103,6 @@ export const {
   useRemoveMutation,
   useAddNewLabelMutation,
   useRemoveLabelMutation,
-  useUpdateMutation
+  useUpdateMutation,
+  useCreateMutation
 } = cardApi
