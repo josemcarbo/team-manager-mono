@@ -54,6 +54,9 @@ export default function useDetail (): IUseDetail {
 
   const handleClose = (): void => {
     dispatch(detailViewOpen(false))
+    handleCloseLabelView()
+    handleCloseDateView()
+    handleCloseListView()
   }
 
   const transformFromDateToFormatted = (date: string): string => {

@@ -13,6 +13,7 @@ import {
 import CreateLabelComponent from '../label/label'
 import DateRangeComponent from '../date/date'
 import CardStatusComponent from '../status/status'
+import Label from '@/components/label/label'
 
 export default function CardIDetailComponent (): React.ReactElement {
   const {
@@ -59,15 +60,15 @@ export default function CardIDetailComponent (): React.ReactElement {
                 card?.labels?.length > 0 && (
                   <div className={styles.detail_labels}>
                     {card.labels.map((label, i) => (
-                      <div key={i} style={{ backgroundColor: label.color }}>
-                        <span>{label.text}</span>
-                        <HiOutlineXMark
-                          className={styles.icon}
-                          onClick={() => {
-                            handleRemoveLabel(label)
-                          }}
-                        />
-                      </div>
+                      <Label
+                        key={i}
+                        color={label.color}
+                        title={label.text}
+                        close={true}
+                        onClose={() => {
+                          handleRemoveLabel(label)
+                        }}
+                      />
                     ))}
                   </div>
               )}

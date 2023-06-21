@@ -45,7 +45,6 @@
   box-sizing: border-box;
   border: 0 !important;
   border-radius: 4px;
-  /* font-family: "Inconsolata", monospace; */
   color: var(--text-primary-color);
   text-align: center;
 }
@@ -87,19 +86,4 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 5px;
-}
-
-.labels_container > span {
-  padding: 2px 10px;
-  border-radius: 8px;
-  /* font-family: "Inconsolata", monospace; */
-  font-size: var(--text-small);
-  color: var(--text-primary-color);
-  cursor: pointer;
-  opacity: 0.4;
-}
-
-.labels_container > span:hover,
-.labels_container > span.selected {
-  opacity: 1;
 }

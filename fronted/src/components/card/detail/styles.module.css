@@ -104,32 +104,6 @@
   gap: 5px;
 }
 
-.detail_labels > div {
-  padding: 2px 8px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 5px;
-
-}
-
-.detail_labels > div > span {
-  font-size: var(--text-medium);
-}
-
-.detail_labels > div > .icon {
-  width: 12px;
-  height: 12px;
-  cursor: pointer;
-  color: var(--text-secondary-color);
-}
-
-.detail_labels > div > .icon:hover {
-  transform: scale(1.1);
-  color: var(--text-primary-color);
-}
-
 .detail_action_date {
   box-sizing: border-box;
   width: 440px;

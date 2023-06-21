@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import useLabel from './useLabel'
 import styles from './styles.module.css'
 import { HiCheck, HiOutlineXMark } from 'react-icons/hi2'
+import Label from '@/components/label/label'
 
 interface Props {
   onClose: () => void
@@ -59,16 +60,15 @@ export default function CreateLabelComponent ({
           <h4>And/Or select the ones you want</h4>
           <div className={styles.labels_container}>
             {board.labels.map((label, i) => (
-              <span
+              <Label
                 key={i}
-                className={classNames(isLabelSelected(label) && styles.selected)}
-                style={{ backgroundColor: label.color }}
+                color={label.color}
+                title={label.text}
                 onClick={() => {
                   handleSelectLabel(label)
                 }}
-              >
-                {label.text}
-              </span>
+                selected={isLabelSelected(label)}
+              />
             ))}
           </div>
         </>
