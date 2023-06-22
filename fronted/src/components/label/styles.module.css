@@ -13,8 +13,9 @@
   font-size: var(--text-small);
   padding: 0;
   margin: 0;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-primary-color);
+  text-transform: uppercase;
 }
 
 .label_container > .icon {

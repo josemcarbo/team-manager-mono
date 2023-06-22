@@ -28,6 +28,7 @@
 
   box-sizing: border-box;
   font-family: "Inconsolata", monospace;
+  letter-spacing: 0.5px;
   color: var(--text-primary-color);
 }
 
